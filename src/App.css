@@ -11,13 +11,20 @@ body {
 } */
 
 .card-title {
-  font-weight: 500;
+  font-weight: bold;
   font-size: 1.25rem;
+  
 }
 
-h2{
-  color:white
+h1, h2, h5{
+  color:white;
+  
 }
+
+.fa-heart{
+  color:red;
+}
+
 
 
 
@@ -27,21 +34,27 @@ h2{
   min-height: 200px;
 }
 
+.row-content-footer {
+  padding: 60px 0;
+  border-top: 1px ridge;
+  
+}
+
 .site-footer {
-  background-image: linear-gradient(#CEC8FF, white);
-  padding: 20px 0;
+  background-image: linear-gradient(black, grey);
+  padding: 150px 0 0px 0;
+  color:white;
+  
+
 }
 
 .jumbotron {
   margin: 0;
-  padding: 30px;
-  background-image: linear-gradient(to right, #5637DD, #3046C5, #60106B);
-  color: white;
+  padding: 80px;
+  background-image: linear-gradient(grey, black);
 }
 
-.jumbotron h2 {
-  color: #CEC8FF;
-}
+
 
 .navbar-dark {
   background-color: #901CAD;
