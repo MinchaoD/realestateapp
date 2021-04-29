@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card, CardImg, CardGroup, CardTitle, CardText, CardBody, CardFooter, CardDeck} from 'reactstrap';
+import { Card, CardImg, CardTitle, CardText, CardBody, CardFooter, CardDeck} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 
@@ -12,32 +12,34 @@ function RenderHouseList({houseitem}) {
             <div className ="row justify-content-center">
                 <div className = "col ">
                     <CardDeck>
-                        <Card >
-                            <CardImg  height="400" src={houseitem.image} alt={houseitem.location} />
-                            <CardBody>
-                                <CardTitle>$ {houseitem.price}</CardTitle>
-                                <CardText>
-                                    <div className = "row">
-                                        <div className="col col-md-3 m-1" >
-                                            {houseitem.beds} beds
+                        <Card>
+                            <Link to={`/houselist${houseitem.id}`} >
+                                <CardImg  height="400" src={houseitem.image} alt={houseitem.location} />
+                                <CardBody >
+                                    <CardTitle>$ {houseitem.price}</CardTitle>
+                                    <CardText>
+                                        <div className = "row">
+                                            <div className="col col-md-3 m-1" >
+                                                {houseitem.beds} beds
+                                            </div>
+                                            <div className="col col-md-3 m-1" >
+                                                {houseitem.baths} baths
+                                            </div>
+                                            <div className="col col-md-4 m-1" >
+                                                {houseitem.sqft} Sq.Ft.
+                                            </div>
                                         </div>
-                                        <div className="col col-md-3 m-1" >
-                                            {houseitem.baths} baths
+                                        <div className = "row">
+                                            <div className = "col">
+                                                {houseitem.location}
+                                            </div>
                                         </div>
-                                        <div className="col col-md-4 m-1" >
-                                            {houseitem.sqft} Sq.Ft.
-                                        </div>
-                                    </div>
-                                    <div className = "row">
-                                        <div className = "col">
-                                            {houseitem.location}
-                                        </div>
-                                    </div>
-                                </CardText>
-                            </CardBody>
-                            <CardFooter>
-                                <small className="text-muted">Listing provided by {houseitem.listing}</small>
-                            </CardFooter>
+                                    </CardText>
+                                </CardBody>
+                                <CardFooter>
+                                    <big className="text-muted">Listing provided by {houseitem.listing}</big>
+                                </CardFooter>
+                            </Link>
                         </Card>
                     </CardDeck>
                 </div>
@@ -58,9 +60,9 @@ function HouseList (props) {
         return (
             <div className = "container">
                 <div className = "row ml-1">
-                    <h2>
+                    <h3>
                         Hot Homes Listing
-                    </h2>
+                    </h3>
                 </div>        
                 <div className="row">
  

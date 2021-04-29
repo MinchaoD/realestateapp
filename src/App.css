@@ -1,5 +1,6 @@
 body {
-  font-family: "Open Sans", sans-serif;
+  /* font-family: "Open Sans", sans-serif; */
+  font-family:Garamond, Georgia, serif;
   background-color: black;
   color:black
   
@@ -12,14 +13,30 @@ body {
 
 .card-title {
   font-weight: bold;
-  font-size: 1.25rem;
-  
+  font-size: 1.5rem;
+  color:black;
+ 
 }
 
-h1, h2, h5{
+.card-text {
+   font-size: 1.25rem;
+   color:black;
+   
+  }
+  
+
+
+h1{
+  font-size: 3rem;
+  color:white
+}
+
+h2, h3, h5{
   color:white;
   
 }
+
+
 
 .fa-heart{
   color:red;
@@ -45,7 +62,7 @@ h1, h2, h5{
 
 .my-modal .modal-content {
 
-  background-color:rgb(156, 152, 152);
+  background-color:rgb(127, 125, 129);
   color: white
 }
 
@@ -55,8 +72,9 @@ h1, h2, h5{
   padding: 150px 0 0px 0;
   color:white;
   
-
 }
+
+
 
 .jumbotron {
   margin: 0;
