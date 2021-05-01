@@ -21,7 +21,8 @@ class Main extends Component {
         const HouseId = ({match}) => {
             return (
                 <HouseItem 
-                    houseitem={this.state.housedetails.filter(houseitem => houseitem.id === +match.params.houseId)[0]}/>
+                    houseitem={this.state.housedetails.filter(houseitem => houseitem.id === +match.params.id)[0]}
+                    houseinfo={this.state.houseinfo.filter(houseinfo => houseinfo.id === +match.params.id)[0]} />
             )
         }
 
@@ -31,7 +32,7 @@ class Main extends Component {
                 <Header />
                 <Switch>
                     <Route path='/home' render={() => <HouseList houseinfo={this.state.houseinfo} />} />
-                    <Route path='/houselist:houseId' component={HouseId} /> 
+                    <Route path='/houselist:id' component={HouseId} /> 
                     <Redirect to='/home' />
                 </Switch>
                 

@@ -6,38 +6,38 @@ import { Link } from 'react-router-dom';
 
 
 
-function RenderHouseList({houseitem}) {
+function RenderHouseList({houseinfo}) {
     return (
 
             <div className ="row justify-content-center">
                 <div className = "col ">
                     <CardDeck>
                         <Card>
-                            <Link to={`/houselist${houseitem.id}`} >
-                                <CardImg  height="400" src={houseitem.image} alt={houseitem.location} />
+                            <Link to={`/houselist${houseinfo.id}`} >
+                                <CardImg  height="400" src={houseinfo.image} alt={houseinfo.location} />
                                 <CardBody >
-                                    <CardTitle>$ {houseitem.price}</CardTitle>
+                                    <CardTitle>$ {houseinfo.price}</CardTitle>
                                     <CardText>
                                         <div className = "row">
                                             <div className="col col-md-3 m-1" >
-                                                {houseitem.beds} beds
+                                                {houseinfo.beds} beds
                                             </div>
                                             <div className="col col-md-3 m-1" >
-                                                {houseitem.baths} baths
+                                                {houseinfo.baths} baths
                                             </div>
                                             <div className="col col-md-4 m-1" >
-                                                {houseitem.sqft} Sq.Ft.
+                                                {houseinfo.sqft} Sq.Ft.
                                             </div>
                                         </div>
                                         <div className = "row">
                                             <div className = "col">
-                                                {houseitem.location}
+                                                {houseinfo.location}
                                             </div>
                                         </div>
                                     </CardText>
                                 </CardBody>
                                 <CardFooter>
-                                    <big className="text-muted">Listing provided by {houseitem.listing}</big>
+                                    <big className="text-muted">Listing provided by {houseinfo.listing}</big>
                                 </CardFooter>
                             </Link>
                         </Card>
@@ -52,7 +52,7 @@ function HouseList (props) {
     const houselist = props.houseinfo.map(house => {
         return (
             <div key = {house.id} className = "col-md-6 m-3 mx-auto">
-                <RenderHouseList houseitem={house} />
+                <RenderHouseList houseinfo={house} />
             </div>
         )
     })

@@ -1,6 +1,7 @@
 export const HOUSEDETAILS = [
     {
         id: 0,
+        image: "/assets/images/house1.jpg",
         image1: "/assets/images/house1detail1.jpg",
         image2: "/assets/images/house1detail2.jpg",
         image3: "/assets/images/house1detail3.jpg",
@@ -11,6 +12,7 @@ export const HOUSEDETAILS = [
     },
     {
         id: 1,
+        image: "/assets/images/house2.jpg",
         image1: "/assets/images/house2detail1.jpg",
         image2: "/assets/images/house2detail2.jpg",
         image3: "/assets/images/house2detail3.jpg",
@@ -21,6 +23,7 @@ export const HOUSEDETAILS = [
     },
     {
         id: 2,
+        image: "/assets/images/house3.jpg",
         image1: "/assets/images/house3detail1.jpg",
         image2: "/assets/images/house3detail2.jpg",
         image3: "/assets/images/house3detail3.jpg",
@@ -32,6 +35,7 @@ export const HOUSEDETAILS = [
     },
     {
         id: 3,
+        image: "/assets/images/house4.jpg",
         image1: "/assets/images/house4detail1.jpg",
         image2: "/assets/images/house4detail2.jpg",
         image3: "/assets/images/house4detail3.jpg",
@@ -43,6 +47,7 @@ export const HOUSEDETAILS = [
     },
     {
         id: 4,
+        image: "/assets/images/house5.jpg",
         image1: "/assets/images/house5detail1.jpg",
         image2: "/assets/images/house5detail2.jpg",
         image3: "/assets/images/house5detail3.jpg",
@@ -54,6 +59,7 @@ export const HOUSEDETAILS = [
     },
     {
         id: 5,
+        image: "/assets/images/house6.jpg",
         image1: "/assets/images/house6detail1.jpg",
         image2: "/assets/images/house6detail2.jpg",
         image3: "/assets/images/house6detail3.jpg",
