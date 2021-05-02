@@ -59,16 +59,16 @@ class Header extends Component {
                                 <h1>Find Your Dream Home in Seattle</h1>
                                
                             </div>
-                            <div className="col col-md-1 mx-3">
+                            <div className="col col-md-1 mx-5">
                                 <span >
-                                    <Button outline color="light" onClick={this.toggleModalSignup}>
+                                    <Button outline size="lg" color="light" onClick={this.toggleModalSignup}>
                                       SignUp
                                     </Button>
                                 </span>
                             </div>
                             <div className="col col-md-1">
                                 <span >
-                                    <Button outline color="light" onClick={this.toggleModalLogin}>
+                                    <Button outline size="lg" color="light" onClick={this.toggleModalLogin}>
                                       LogIn
                                     </Button>
                                 </span>

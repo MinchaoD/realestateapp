@@ -15,7 +15,7 @@ function RenderHouseList({houseinfo}) {
                         <Card>
                             <Link to={`/houselist${houseinfo.id}`} >
                                 <CardImg  height="400" src={houseinfo.image} alt={houseinfo.location} />
-                                <CardBody >
+                                <CardBody className="cardinfo" >
                                     <CardTitle>$ {houseinfo.price}</CardTitle>
                                     <CardText>
                                         <div className = "row">
