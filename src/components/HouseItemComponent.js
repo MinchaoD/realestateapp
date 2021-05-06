@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import { Breadcrumb, BreadcrumbItem,  Button, Form, FormGroup, Card, CardImg, Row, Label, Input, Col, FormFeedback  } from 'reactstrap';
+import { Button, Form, FormGroup, Card, CardImg, Row, Label, Input, Col, FormFeedback  } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
+import { Fade, FadeTransform, Transform, Stagger } from 'react-animation-components'
 import Geocode from "react-geocode";
 import GoogleApiWrapper from './MapComponent'
 import ToastBody from 'reactstrap/lib/ToastBody';
@@ -21,7 +22,7 @@ function RenderMainImage(houseitem) {
                         </Col>
                         <Col md={4} >
                             <Card>
-                                <CardImg  height="250" src={houseitem.image1}  />
+                                <CardImg  height="250" src={houseitem.image1} align />
                             </Card>
                             
                                 <br/>
@@ -149,13 +150,15 @@ class Tour extends Component{
             phoneNum: '',
             email: '',
             date:'',
+            time:'',
             notes: '',
             touched: {
                 firstName: false,
                 lastName: false,
                 phoneNum: false,
                 email: false,
-                date: false
+                date: false,
+                time: false
             }
         };
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -226,7 +229,7 @@ class Tour extends Component{
         
         alert('Thank you for scheduling the home tour with us, ' + this.state.firstName + ' ' + this.state.lastName +'!'+ '\n' + 'We will see you at ' + this.state.time + ' on ' + this.state.date +'.');
         event.preventDefault();
-    }
+        }
 
     render(){
         const errors = this.validate(this.state.firstName, this.state.lastName, this.state.phoneNum, this.state.email, this.state.date);   
@@ -312,7 +315,7 @@ class Tour extends Component{
                                         value={this.state.notes}
                                         onChange={this.handleInputChange}></Input>
                                 </Col>
-                                <Col className="align-self-end" align="right">
+                                <Col className="align-self-end" align="center">
                                     <Button type="submit" size="lg" color="success">
                                         Schedule Tour
                                     </Button>
@@ -348,9 +351,16 @@ function HouseItem (props) {
                 <br/>
                 <br/>
                 <br/>
-                <Row>
+                
+                <FadeTransform
+                                in
+                                transformProps={{
+                                    exitTransform: 'scale(0.5) translateY(50%)'
+                                }}>
+
                     <Tour/>
-                </Row>
+                </FadeTransform>
+              
             </div>
     )
 }
