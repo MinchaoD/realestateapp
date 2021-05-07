@@ -5,9 +5,16 @@ class Footer extends Component {
         return (
             <React.Fragment>
                <footer className="site-footer">
-                    <div className="container-fluid">
+                    <div className="container">
+                    <hr  style={{
+                                height: .5,
+                                borderColor : 'white'
+                            }}/>
+                            <br/>
                         <div className="row text-left ">
-                            <div className="col-4 offset-3">
+                            
+                            <div className="col-5 offset-2">
+                            
                                 <h2>Links</h2>
                                 <ul className="list-unstyled">
                                     <li><a href="http://www.redfin.com"><h5>Redfin</h5></a></li>
