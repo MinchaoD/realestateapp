@@ -5,7 +5,6 @@ import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 class RenderMap extends Component {
   render(){
       const mapStyles = {
-          position: 'relative', 
           width: 300,
           height: 300,
         };
@@ -22,8 +21,7 @@ class RenderMap extends Component {
 }}
 
 
-  export default GoogleApiWrapper(
-    (props) => ({
-    apiKey: props.AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8
-  }))(RenderMap);
+  export default GoogleApiWrapper({
+    apiKey: 'AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8'
+  })(RenderMap);
 
