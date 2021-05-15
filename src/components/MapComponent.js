@@ -1,21 +1,29 @@
-import React from 'react';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import React, {Component} from 'react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 
 
-function RenderMap(props){
- 
-    return (
-        <Map
-          google={props.google}
-          zoom={8}
-        //   style={mapStyles}
-          initialCenter={{ lat: 47.444, lng: -122.176}}
-        >
-          <Marker position={{ lat: 48.00, lng: -122.00}} />
-        </Map>
-    );
-  }
+class RenderMap extends Component {
+  render(){
+      const mapStyles = {
+          position: 'relative', 
+          width: 300,
+          height: 300,
+        };
+  return (
+    <Map
+      google={this.props.google}
+      zoom={15}
+      style={mapStyles}
+      initialCenter={{ lat: 47.444, lng: -122.176}}
+    >
+      <Marker position={{ lat: 48.00, lng: -122.00}} />
+    </Map>
+  );
+}}
 
-  export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8'
-  })(RenderMap);
+
+  export default GoogleApiWrapper(
+    (props) => ({
+    apiKey: props.AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8
+  }))(RenderMap);
+

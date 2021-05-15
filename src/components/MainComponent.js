@@ -35,7 +35,6 @@ class Main extends Component {
                     <Route path='/houselist:id' component={HouseId} /> 
                     <Redirect to='/home' />
                 </Switch>
-                
                 <Footer />
                 
             </div>

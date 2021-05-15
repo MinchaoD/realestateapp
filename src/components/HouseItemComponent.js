@@ -2,11 +2,7 @@ import React, {Component} from 'react';
 import { Button, Form, FormGroup, Card, CardImg, Row, Label, Input, Col, FormFeedback  } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
-import { Fade, FadeTransform, Transform, Stagger } from 'react-animation-components'
-import Geocode from "react-geocode";
-import GoogleApiWrapper from './MapComponent'
-import ToastBody from 'reactstrap/lib/ToastBody';
-
+import { Fade, FadeTransform, Transform, Stagger } from 'react-animation-components';
 
 function RenderMainImage(houseitem) {
     if(houseitem){
@@ -360,7 +356,6 @@ function HouseItem (props) {
 
                     <Tour/>
                 </FadeTransform>
-              
             </div>
     )
 }
