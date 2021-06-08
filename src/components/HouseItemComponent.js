@@ -3,6 +3,7 @@ import { Button, Form, FormGroup, Card, CardImg, Row, Label, Input, Col, FormFee
 import { Link } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
 import { Fade, FadeTransform, Transform, Stagger } from 'react-animation-components';
+import Map from './MapComponent'
 
 function RenderMainImage(houseitem) {
     if(houseitem){
@@ -336,18 +337,17 @@ function HouseItem (props) {
                     <Button variant="outline-light" style={{backgroundColor:"black"}}><Link to="/home" style={{ color: 'white', fontSize:'1.8rem'}}>Home</Link></Button>
                     </Col>
                 </Row>
-                <br/>
-                <br/>
+                <br/><br/>
                 {RenderMainImage(props.houseitem)}
-                <br/>
-                <br/>
+                <br/><br/>
                 {RenderInfo(props.houseinfo)}
             
                 {RenderDescription(props.houseitem)}
-                <br/>
-                <br/>
-                <br/>
-                
+                <br/><br/><br/>
+                <Row style={{justifyContent: "center"}}>
+                    <Map />
+                </Row>
+                <br/><br/><br/>
                 <FadeTransform
                                 in
                                 transformProps={{
