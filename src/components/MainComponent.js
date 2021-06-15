@@ -23,9 +23,9 @@ class Main extends Component {
             return (
                 <HouseItem 
                     houseitem={this.state.housedetails.filter(houseitem => houseitem.id === +match.params.id)[0]}
-                    houseinfo={this.state.houseinfo.filter(houseinfo => houseinfo.id === +match.params.id)[0]} />
+                    houseinfo={this.state.houseinfo.filter(houseinfo => houseinfo.id === +match.params.id)[0]} />,
 
-                // <Map houseinfo={this.state.houseinfo.filter(houseinfo => houseinfo.id === +match.params.id)[0]} />
+                <Map houseinfo={this.state.houseinfo.filter(houseinfo => houseinfo.id === +match.params.id)[0]} />
             )
         }
 
