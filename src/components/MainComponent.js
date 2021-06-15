@@ -5,7 +5,7 @@ import { HOUSEINFO } from '../shared/houseinfo';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import HouseItem from './HouseItemComponent';
-import Map from './MapComponent';
+
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 
@@ -23,9 +23,8 @@ class Main extends Component {
             return (
                 <HouseItem 
                     houseitem={this.state.housedetails.filter(houseitem => houseitem.id === +match.params.id)[0]}
-                    houseinfo={this.state.houseinfo.filter(houseinfo => houseinfo.id === +match.params.id)[0]} />,
+                    houseinfo={this.state.houseinfo.filter(houseinfo => houseinfo.id === +match.params.id)[0]} />
 
-                <Map houseinfo={this.state.houseinfo.filter(houseinfo => houseinfo.id === +match.params.id)[0]} />
             )
         }
 
