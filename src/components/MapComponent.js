@@ -1,14 +1,35 @@
 import React from 'react';
 import { GoogleMap, withScriptjs, Marker, withGoogleMap } from 'react-google-maps';
+import Geocode from 'react-geocode';
+
+let houseLat = ''
+let houseLng = ''
+Geocode.setApiKey('AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8');
+Geocode.setLanguage('en');
+Geocode.setRegion('us');
+Geocode.setLocationType('ROOFTOP');
+Geocode.enableDebug();
+Geocode.fromAddress("7425 NE 200th Street, Kenmore, WA98028, USA").then(
+  (response) => {
+    const { lat, lng } = response.results[0].geometry.location;
+    houseLat = lat
+    houseLng = lng
+  },
+  (error) => {
+    console.error(error);
+  }
+);
+
+console.log(houseLat, houseLng)
 
 function showMap() {
   return (
     <GoogleMap
       defaultZoom={15}
-      defaultCenter={{lat: 45.42, lng: -75.69}}>
+      defaultCenter={{lat: houseLat , lng: houseLng }}>
       <Marker
           
-          position={{lat: 45.42, lng: -75.69}} />
+          position={{lat:houseLat , lng: houseLng}} />
     </GoogleMap>
 
   )
@@ -16,7 +37,10 @@ function showMap() {
 
 const WrappedMap = withScriptjs(withGoogleMap(showMap));
 
-export default function Map() {
+
+function Map() {
+
+
   return (
     <div style = {{ width: '50vw', height: '50vh'}}>
       <WrappedMap
@@ -27,6 +51,8 @@ export default function Map() {
     </div>
   )
 }
+
+export default Map
 
 
 
