@@ -330,13 +330,13 @@ class Tour extends Component{
 }
 
 
+var houseLat = ""
+var houseLng = ""
 
 function ShowMap(houseinfo) {
     // const [houseLat, sethouseLat] = useState("")
     // const [houseLng, sethouseLng] = useState("")
 
-    let houseLat = ""
-    let houseLng = ""
 
   if(houseinfo){
          Geocode.setApiKey('AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8');
@@ -362,9 +362,9 @@ function ShowMap(houseinfo) {
    )}   
 return    <GoogleMap
 defaultZoom={15}
-defaultCenter={{lat: 47, lng: -122}}>
+defaultCenter={{lat: houseLat, lng: houseLng}}>
 <Marker
-    position={{lat:47, lng: -122}} />
+    position={{lat:houseLat, lng: houseLng}} />
 </GoogleMap>
 
 }
