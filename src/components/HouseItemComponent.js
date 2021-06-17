@@ -1,10 +1,8 @@
-import React, {Component} from 'react';
+import React, {Component, useState} from 'react';
 import { Button, Form, FormGroup, Card, CardImg, Row, Label, Input, Col, FormFeedback  } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
 import { Fade, FadeTransform, Transform, Stagger } from 'react-animation-components';
-
-
 import { GoogleMap, withScriptjs, Marker, withGoogleMap } from 'react-google-maps';
 import Geocode from 'react-geocode';
  
@@ -333,54 +331,58 @@ class Tour extends Component{
 
 
 
-function showMap(houseinfo) {
-  let houseLat ='';
-  let houseLng =''
+function ShowMap(houseinfo) {
+    // const [houseLat, sethouseLat] = useState("")
+    // const [houseLng, sethouseLng] = useState("")
+
+    let houseLat = ""
+    let houseLng = ""
+
   if(houseinfo){
-      Geocode.setApiKey('AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8');
-      Geocode.setLanguage('en');
-      Geocode.setRegion('US');
-      Geocode.setLocationType('ROOFTOP');
-      Geocode.enableDebug();
-      Geocode.fromAddress(`${houseinfo.location}`).then(
-        (response) => {
-          const { lat, lng } = response.results[0].geometry.location;
-       houseLat = lat;
-       houseLng = lng;
-       
-      console.log("abc" + houseLat)
-       
-        },
-        (error) => {
-          console.error(error);
-        }
-      )}
-      return (
-       
-        <GoogleMap
-          defaultZoom={15}
-          defaultCenter={{lat: 47, lng: -23}}>
-          <Marker
-              position={{lat: 47, lng: -23}} />
-        </GoogleMap>
-      
-     )
+         Geocode.setApiKey('AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8');
+         Geocode.setLanguage('en');
+         Geocode.setRegion('us');
+         Geocode.setLocationType('ROOFTOP');
+         Geocode.enableDebug();
+         Geocode.fromAddress(`${houseinfo.location}`).then(
+           (response) => {
+             const { lat, lng } = response.results[0].geometry.location;
+        //   sethouseLat(lat)
+        //   sethouseLng(lng)
+
+        houseLat = lat
+        houseLng = lng
+         console.log("abc" + houseLat)
+         console.log('fee' + houseLng)
+     
+     },
+     (error) => {
+       console.error(error);
+     }
+   )}   
+return houseLat, houseLng
 }
+ 
+const WrappedMap = withScriptjs(withGoogleMap(ShowMap((props) => (
+    <GoogleMap
+    defaultZoom={15}
+    defaultCenter={{lat: props.houseLat, lng: props.houseLng}}>
+    <Marker
+        position={{lat:props.houseLat, lng: props.houseLng}} />
+  </GoogleMap>
+))));
+  
+function Map(houseinfo) {
 
-
-
-function Map(props) {
-  const WrappedMap = withScriptjs(withGoogleMap(showMap(props)));
-  <WrappedMap
+    ShowMap(houseinfo)
+  
+  return (
+    <div style = {{ width: '50vw', height: '50vh'}}>
+    <WrappedMap
         googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8`}
         loadingElement={<div style={{height: '100%'}}/>}
         containerElement={<div style={{ height: '100%'}}/>}
         mapElement={<div style={{height:'100%'}} />} />
-
-
-  return (
-    <div style = {{ width: '50vw', height: '50vh'}}>
-      {WrappedMap}
       
     </div>
   )
