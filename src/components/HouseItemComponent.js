@@ -360,21 +360,22 @@ function ShowMap(houseinfo) {
        console.error(error);
      }
    )}   
-return houseLat, houseLng
+return    <GoogleMap
+defaultZoom={15}
+defaultCenter={{lat: 47, lng: -122}}>
+<Marker
+    position={{lat:47, lng: -122}} />
+</GoogleMap>
+
 }
  
-const WrappedMap = withScriptjs(withGoogleMap(ShowMap((props) => (
-    <GoogleMap
-    defaultZoom={15}
-    defaultCenter={{lat: props.houseLat, lng: props.houseLng}}>
-    <Marker
-        position={{lat:props.houseLat, lng: props.houseLng}} />
-  </GoogleMap>
-))));
-  
-function Map(houseinfo) {
+const WrappedMap = withScriptjs(withGoogleMap(ShowMap))
 
-    ShowMap(houseinfo)
+ 
+  
+function Map(props) {
+
+    ShowMap(props)
   
   return (
     <div style = {{ width: '50vw', height: '50vh'}}>
