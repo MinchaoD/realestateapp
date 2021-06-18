@@ -60,12 +60,10 @@ function RenderMainImage(houseitem) {
 
 function RenderInfo(houseinfo) {
     if(houseinfo){
- 
         return(
             <div className = "container">
                  <Row>
                     <Col md={6}>
-                    
                         <h4>{houseinfo.location}</h4>
                     </Col>
                 </Row>
@@ -333,12 +331,11 @@ class Tour extends Component{
 var houseLat = ""
 var houseLng = ""
 
+
 function ShowMap(houseinfo) {
-    // const [houseLat, sethouseLat] = useState("")
-    // const [houseLng, sethouseLng] = useState("")
+//    const [houseLat, sethouseLat] = useState("")
+//    const [houseLng, sethouseLng] = useState("")
 
-
-  if(houseinfo){
          Geocode.setApiKey('AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8');
          Geocode.setLanguage('en');
          Geocode.setRegion('us');
@@ -359,23 +356,42 @@ function ShowMap(houseinfo) {
      (error) => {
        console.error(error);
      }
-   )}   
-return    <GoogleMap
-defaultZoom={15}
-defaultCenter={{lat: houseLat, lng: houseLng}}>
-<Marker
-    position={{lat:houseLat, lng: houseLng}} />
-</GoogleMap>
+   );
 
-}
+//    if (houseLat === "" || houseLat === 40.7222993) {
+//     Geocode.setApiKey('AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8');
+//     Geocode.setLanguage('en');
+//     Geocode.setRegion('us');
+//     Geocode.setLocationType('ROOFTOP');
+//     Geocode.enableDebug();
+//     Geocode.fromAddress(`${houseinfo.location}`).then(
+//         (response) => {
+//           const { lat1, lng1 } = response.results[0].geometry.location;
+//        const houseLat1 = lat1
+//         const houseLng1 = lng1 
+//     console.log("xyz" + `${houseinfo.location}`)})} else{
+    
+       
+            return  (
+                
+            <GoogleMap
+            defaultZoom={15}
+            defaultCenter={{lat: houseLat, lng: houseLng}}>
+            <Marker
+                position={{lat:houseLat, lng: houseLng}} />
+            </GoogleMap>
+
+                )}
  
 const WrappedMap = withScriptjs(withGoogleMap(ShowMap))
 
  
   
-function Map(props) {
+function Map(houseinfo) {
 
-    ShowMap(props)
+    if(houseinfo){
+
+   ShowMap(houseinfo)
   
   return (
     <div style = {{ width: '50vw', height: '50vh'}}>
@@ -387,12 +403,11 @@ function Map(props) {
       
     </div>
   )
-}
-
+}}
 
 
 function HouseItem (props) {
-    if (props.houseitem){
+    if (props.houseitem || props.houseinfo){
     return (
             <div className="container">
                 <Row>
