@@ -1,3 +1,7 @@
+// import { fetchHouses } from "./fetchAPI";
+
+// fetchHouses()
+
 export const HOUSEINFO = [
     {
         id: 0,
