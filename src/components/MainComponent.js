@@ -7,24 +7,6 @@ import Footer from './FooterComponent';
 import HouseItem from './HouseItemComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-// const request = require('request');
-
-// const options = {
-//   method: 'GET',
-//   url: 'https://real-estate-usa.p.rapidapi.com/api/v1/properties',
-//   qs: {postal_code: `${this.state.zipcode}`, offset: '0', limit: '200'},
-//   headers: {
-//     'x-rapidapi-key': '90c32ee4dfmsh4fb639c105f3c53p17b70ejsn4202beb6b2c8',
-//     'x-rapidapi-host': 'real-estate-usa.p.rapidapi.com',
-//     useQueryString: true
-//   }
-// };
-
-// request(options, function (error, response, body) {
-// 	if (error) throw new Error(error);
-
-// 	console.log("body"+body);
-// });
 
 class Main extends Component {
     constructor(props) {
@@ -32,7 +14,25 @@ class Main extends Component {
         this.state = {
             housedetails: HOUSEDETAILS,
             houseinfo: HOUSEINFO,
-            zipcode: ""
+            zipcode: "",
+            id: "",
+            address:"",
+            lat:"",
+            lng:"",
+            img:"",
+            img1: "",
+            img2:"",
+            img3: "",
+            img4:"",
+            img5: "",
+            yearbuilt: "",
+            sqft: "",
+            beds: "",
+            baths: "",
+            propertytype: "",
+            price:"",
+            listing:""
+
         };
     }
 
@@ -42,7 +42,7 @@ class Main extends Component {
         const options = {
           method: 'GET',
           url: 'https://real-estate-usa.p.rapidapi.com/api/v1/properties',
-          qs: {postal_code: '94105', offset: '0', limit: '200'},
+          qs: {postal_code: `${this.state.zipcode}`, offset: '0', limit: '200'},
           headers: {
             'x-rapidapi-key': '90c32ee4dfmsh4fb639c105f3c53p17b70ejsn4202beb6b2c8',
             'x-rapidapi-host': 'real-estate-usa.p.rapidapi.com',
@@ -52,8 +52,27 @@ class Main extends Component {
         
         request(options, function (error, response, body) {
             if (error) throw new Error(error);
-        
-            console.log(body);
+            console.log(JSON.parse(body)); // convert the data to json parse readable
+            const data = JSON.parse(body).properties
+            this.setState({
+                id: data.id,
+                location: data.listings[0].address,
+                lat: data.listings[0].address.lat,
+                lng: data.listings[0].address.long,
+                img: data.listings[0].photos[0].href,
+                img1: data.listings[0].photos[1].href,
+                img2: data.listings[0].photos[2].href,
+                img3: data.listings[0].photos[3].href,
+                img4: data.listings[0].photos[4].href,
+                img5: data.listings[0].photos[5].href,
+                yearbuilt: data.listings[0].year_built,
+                sqft: data.listings[0].sqft,
+                beds: data.listings[0].beds,
+                baths: data.listings[0].baths,
+                propertytype: data.listings[0].prop_type,
+                price: data.listings[0].price,
+                listing: data.listings[0].mls_id.mls.name, 
+            })
         });}
 
 handleSubmit = (e) => {
@@ -83,19 +102,23 @@ handleInputChange = (e) => {
         return (
             <div>
                 <Header />
-                <div style={{display: 'flex', fontSize:"3.5vh", justifyContent:'center', alignItems:'center'}}>
-                    <label for="site-search"><span>Search Houses at this Zipcode:&nbsp;&nbsp;</span></label>
-                    <input type="search" id="zipcode" name="zipcode"
-                        aria-label="Search this zipcode" 
-                        onChange={this.handleInputChange} />
-                    <span>&nbsp;&nbsp;</span>
-                    <button type="submit" onClick={this.handleSubmit}>Search</button>
-                </div>
-                <br/><br/><br/>
+                
                 <Switch>
-                    <Route path='/home' render={() => <HouseList houseinfo={this.state.houseinfo} />} />
-                    <Route path='/houselist:id' component={HouseId} /> 
-                    <Redirect to='/home' />
+                    <div style={{display: 'flex', fontSize:"3.5vh", justifyContent:'center', alignItems:'center'}}>
+                        <label for="site-search"><span>Search Houses at this Zipcode:&nbsp;&nbsp;</span></label>
+                        <input type="search" id="zipcode" name="zipcode"
+                            aria-label="Search this zipcode" 
+                            onChange={this.handleInputChange} />
+                        <span>&nbsp;&nbsp;</span>
+                        <button type="submit" onClick={this.handleSubmit}>Search</button>
+                    </div>
+                    <br/><br/><br/>
+                    if (handleSubmit){
+                        <Route path='/home' render={() => <HouseList houseinfo={this.state.houseinfo} />} />,
+                        <Route path='/houselist:id' component={HouseId} /> ,
+                        <Redirect to='/home' />
+                    }
+                    
                 </Switch>
                 <Footer />
                 
