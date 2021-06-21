@@ -15,7 +15,7 @@ class Main extends Component {
             housedetails: HOUSEDETAILS,
             houseinfo: HOUSEINFO,
             zipcode: "",
-            id: "",
+            houseid: "",
             address:"",
             lat:"",
             lng:"",
@@ -52,26 +52,26 @@ class Main extends Component {
         
         request(options, function (error, response, body) {
             if (error) throw new Error(error);
-            console.log(JSON.parse(body)); // convert the data to json parse readable
+            console.log(JSON.parse(body).properties.id); // convert the data to json parse readable
             const data = JSON.parse(body).properties
             this.setState({
-                id: data.id,
-                location: data.listings[0].address,
-                lat: data.listings[0].address.lat,
-                lng: data.listings[0].address.long,
-                img: data.listings[0].photos[0].href,
-                img1: data.listings[0].photos[1].href,
-                img2: data.listings[0].photos[2].href,
-                img3: data.listings[0].photos[3].href,
-                img4: data.listings[0].photos[4].href,
-                img5: data.listings[0].photos[5].href,
-                yearbuilt: data.listings[0].year_built,
-                sqft: data.listings[0].sqft,
-                beds: data.listings[0].beds,
-                baths: data.listings[0].baths,
-                propertytype: data.listings[0].prop_type,
-                price: data.listings[0].price,
-                listing: data.listings[0].mls_id.mls.name, 
+                houseid: data.id,
+                location: data[0].listings[0].address,
+                lat: data[0].listings[0].address.lat,
+                lng: data[0].listings[0].address.long,
+                img: data[0].listings[0].photos[0].href,
+                img1: data[0].listings[0].photos[1].href,
+                img2: data[0].listings[0].photos[2].href,
+                img3: data[0].listings[0].photos[3].href,
+                img4: data[0].listings[0].photos[4].href,
+                img5: data[0].listings[0].photos[5].href,
+                yearbuilt: data[0].listings[0].year_built,
+                sqft: data[0].listings[0].sqft,
+                beds: data[0].listings[0].beds,
+                baths: data[0].listings[0].baths,
+                propertytype: data[0].listings[0].prop_type,
+                price: data[0].listings[0].price,
+                listing: data[0].listings[0].mls_id.mls.name, 
             })
         });}
 
@@ -104,20 +104,20 @@ handleInputChange = (e) => {
                 <Header />
                 
                 <Switch>
-                    <div style={{display: 'flex', fontSize:"3.5vh", justifyContent:'center', alignItems:'center'}}>
-                        <label for="site-search"><span>Search Houses at this Zipcode:&nbsp;&nbsp;</span></label>
-                        <input type="search" id="zipcode" name="zipcode"
-                            aria-label="Search this zipcode" 
-                            onChange={this.handleInputChange} />
-                        <span>&nbsp;&nbsp;</span>
-                        <button type="submit" onClick={this.handleSubmit}>Search</button>
-                    </div>
-                    <br/><br/><br/>
-                    if (handleSubmit){
+                        <div style={{display: 'flex', fontSize:"3.5vh", justifyContent:'center', alignItems:'center'}}>
+                            <label for="site-search"><span>Search Houses at this Zipcode:&nbsp;&nbsp;</span></label>
+                            <input type="search" id="zipcode" name="zipcode"
+                                aria-label="Search this zipcode" 
+                                onChange={this.handleInputChange} />
+                            <span>&nbsp;&nbsp;</span>
+                            <button type="submit" onClick={this.handleSubmit}>Search</button>
+                        </div>
+                        <br/><br/><br/>
+             
                         <Route path='/home' render={() => <HouseList houseinfo={this.state.houseinfo} />} />,
                         <Route path='/houselist:id' component={HouseId} /> ,
                         <Redirect to='/home' />
-                    }
+                    
                     
                 </Switch>
                 <Footer />

@@ -59,6 +59,7 @@ function HouseList (props) {
 
         return (
             <div className = "container">
+                
                 <div className = "row ml-1">
                     <h3>
                         Hot Homes Listing
