@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import HouseList from './HouseListComponent';
+import HouseItem from './HouseItemComponent';
+import SearchList from './SearchListComponent';
 import { HOUSEDETAILS } from '../shared/housedetails';
 import { HOUSEINFO } from '../shared/houseinfo';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
-import HouseItem from './HouseItemComponent';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 
@@ -14,24 +15,8 @@ class Main extends Component {
         this.state = {
             housedetails: HOUSEDETAILS,
             houseinfo: HOUSEINFO,
-            zipcode: "",
-            houseid: "",
-            address:"",
-            lat:"",
-            lng:"",
-            img:"",
-            img1: "",
-            img2:"",
-            img3: "",
-            img4:"",
-            img5: "",
-            yearbuilt: "",
-            sqft: "",
-            beds: "",
-            baths: "",
-            propertytype: "",
-            price:"",
-            listing:""
+            searchproperties:[],
+            zipcode:""
 
         };
     }
@@ -52,26 +37,10 @@ class Main extends Component {
         
         request(options, function (error, response, body) {
             if (error) throw new Error(error);
-            console.log(JSON.parse(body).properties.id); // convert the data to json parse readable
+            console.log(JSON.parse(body).properties); // convert the data to json parse readable
             const data = JSON.parse(body).properties
             this.setState({
-                houseid: data.id,
-                location: data[0].listings[0].address,
-                lat: data[0].listings[0].address.lat,
-                lng: data[0].listings[0].address.long,
-                img: data[0].listings[0].photos[0].href,
-                img1: data[0].listings[0].photos[1].href,
-                img2: data[0].listings[0].photos[2].href,
-                img3: data[0].listings[0].photos[3].href,
-                img4: data[0].listings[0].photos[4].href,
-                img5: data[0].listings[0].photos[5].href,
-                yearbuilt: data[0].listings[0].year_built,
-                sqft: data[0].listings[0].sqft,
-                beds: data[0].listings[0].beds,
-                baths: data[0].listings[0].baths,
-                propertytype: data[0].listings[0].prop_type,
-                price: data[0].listings[0].price,
-                listing: data[0].listings[0].mls_id.mls.name, 
+                searchproperties: data,
             })
         });}
 
@@ -98,6 +67,15 @@ handleInputChange = (e) => {
             )
         }
 
+        // const SearchId = ({match}) => {
+        //     return (
+        //         <SearchItem 
+                    
+        //             searchinfo={this.state.searchproperties.filter(searchinfo => searchinfo.id === +match.params.id)[0]} />
+
+        //     )
+        // }
+
 
         return (
             <div>
@@ -115,7 +93,9 @@ handleInputChange = (e) => {
                         <br/><br/><br/>
              
                         <Route path='/home' render={() => <HouseList houseinfo={this.state.houseinfo} />} />,
+                        <SearchList searchinfo={this.state.searchproperties} />,
                         <Route path='/houselist:id' component={HouseId} /> ,
+                        {/* <Route path='/searchlist:id' component={SearchId} /> , */}
                         <Redirect to='/home' />
                     
                     
