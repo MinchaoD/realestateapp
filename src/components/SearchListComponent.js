@@ -2,42 +2,41 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardTitle, CardText, CardBody, CardFooter, CardDeck} from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-function RenderSearchList({searchinfo}) {
+function RenderSearchList({searchresults}) {
     return (
-
+        
             <div className ="row justify-content-center">
                 <div className = "col ">
                     <CardDeck>
                         <Card>
-                            {/* <Link to={`/searchlist${searchinfo.id}`} > */}
-                                <CardImg  height="400" src={searchinfo.map((item) =>{
-                                    return  `${item.listings.photos[0].href}`})} />
+                            <Link to={`/searchresults${searchresults.property_id}`} >
+                                <CardImg  height="400" src={searchresults.primary_photo.href}/>
                                 <CardBody className="cardinfo" >
-                                    <CardTitle> $ {searchinfo.map((item) => {
-                                        return `${item.listings.price}`})}</CardTitle>
+                                    <CardTitle> $ {searchresults.list_price}</CardTitle> 
                                     <CardText>
                                         <div className = "row">
                                             <div className="col col-md-3 m-1" >
-                                                {searchinfo.map((item)=> { return `${item.listings.beds}`})} beds
+                                                {searchresults.description.beds} beds
                                             </div>
                                             <div className="col col-md-3 m-1" >
-                                                {searchinfo.map((item) => { return `${item.listings.baths}`})} baths
+                                                {searchresults.description.baths} baths
                                             </div>
                                             <div className="col col-md-4 m-1" >
-                                                {searchinfo.map((item) =>{ return `${item.listings.sqft}`})} Sq.Ft.
+                                                {searchresults.description.sqft} Sq.Ft.
                                             </div>
                                         </div>
                                         <div className = "row">
                                             <div className = "col">
-                                                {searchinfo.map((item) => { return `${item.listings.address}`})}
+   
+                                                {`${searchresults.location.address.line}, ${searchresults.location.address.city}, ${searchresults.location.address.state}`}
                                             </div>
                                         </div>
                                     </CardText>
                                 </CardBody>
                                 <CardFooter>
-                                    <big className="text-muted">Listing provided by {searchinfo.map((item)=>{return `${item.listing.mls_id.mls.name}`})}</big>
+                                    <big className="text-muted">Listing provided by {searchresults.source.type}</big>
                                 </CardFooter>
-                            {/* </Link> */}
+                            </Link>
                         </Card>
                     </CardDeck>
                 </div>
@@ -46,11 +45,11 @@ function RenderSearchList({searchinfo}) {
 }
 
 function SearchList (props) {
-
-    const searchlist = props.searchinfo.map(searchhouse => {
+    
+    const searchlist = props.searchresults.map(searchhouse => {
         return (
-            <div key = {searchhouse.id} className = "col-md-6 m-3 mx-auto">
-                <RenderSearchList searchinfo={searchhouse} />
+            <div key = {searchhouse.lead_attributes.listing_id} className = "col-md-6 m-3 mx-auto">
+                <RenderSearchList searchresults={searchhouse} />
             </div>
         )
     })
@@ -60,7 +59,7 @@ function SearchList (props) {
                 
                 <div className = "row ml-1">
                     <h3>
-                        Search Results
+                        Search Results for {props.city} in {props.state}
                     </h3>
                 </div>        
                 <div className="row">
