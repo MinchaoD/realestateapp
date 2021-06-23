@@ -10,30 +10,32 @@ function RenderSearchList({searchinfo}) {
                     <CardDeck>
                         <Card>
                             {/* <Link to={`/searchlist${searchinfo.id}`} > */}
-                                <CardImg  height="400" src={searchinfo.listings.photos[0].href} alt={searchinfo.listings.address} />
+                                <CardImg  height="400" src={searchinfo.map((item) =>{
+                                    return  `${item.listings.photos[0].href}`})} />
                                 <CardBody className="cardinfo" >
-                                    <CardTitle>$ {searchinfo.listings.price}</CardTitle>
+                                    <CardTitle> $ {searchinfo.map((item) => {
+                                        return `${item.listings.price}`})}</CardTitle>
                                     <CardText>
                                         <div className = "row">
                                             <div className="col col-md-3 m-1" >
-                                                {searchinfo.listings.beds} beds
+                                                {searchinfo.map((item)=> { return `${item.listings.beds}`})} beds
                                             </div>
                                             <div className="col col-md-3 m-1" >
-                                                {searchinfo.listings.baths} baths
+                                                {searchinfo.map((item) => { return `${item.listings.baths}`})} baths
                                             </div>
                                             <div className="col col-md-4 m-1" >
-                                                {searchinfo.listings.sqft} Sq.Ft.
+                                                {searchinfo.map((item) =>{ return `${item.listings.sqft}`})} Sq.Ft.
                                             </div>
                                         </div>
                                         <div className = "row">
                                             <div className = "col">
-                                                {searchinfo.listings.address}
+                                                {searchinfo.map((item) => { return `${item.listings.address}`})}
                                             </div>
                                         </div>
                                     </CardText>
                                 </CardBody>
                                 <CardFooter>
-                                    <big className="text-muted">Listing provided by {searchinfo.listing.mls_id.mls.name}</big>
+                                    <big className="text-muted">Listing provided by {searchinfo.map((item)=>{return `${item.listing.mls_id.mls.name}`})}</big>
                                 </CardFooter>
                             {/* </Link> */}
                         </Card>

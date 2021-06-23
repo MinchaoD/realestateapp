@@ -15,34 +15,71 @@ class Main extends Component {
         this.state = {
             housedetails: HOUSEDETAILS,
             houseinfo: HOUSEINFO,
-            searchproperties:[],
+            id:[],
             zipcode:""
 
         };
     }
 
-    zipcodeSearch = () => {
-        const request = require('request');
+    componentDidMount(){
+        this.zipcodeSearch()
+       }
 
-        const options = {
-          method: 'GET',
-          url: 'https://real-estate-usa.p.rapidapi.com/api/v1/properties',
-          qs: {postal_code: `${this.state.zipcode}`, offset: '0', limit: '200'},
-          headers: {
-            'x-rapidapi-key': '90c32ee4dfmsh4fb639c105f3c53p17b70ejsn4202beb6b2c8',
-            'x-rapidapi-host': 'real-estate-usa.p.rapidapi.com',
-            useQueryString: true
-          }
-        };
-        
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
-            console.log(JSON.parse(body).properties); // convert the data to json parse readable
-            const data = JSON.parse(body).properties
+    zipcodeSearch = () => {
+               
+        fetch(`https://real-estate-usa.p.rapidapi.com/api/v1/properties?postal_code=${this.state.zipcode}&offset=0&limit=200`, {
+        "method": "GET",
+        "headers": {
+		"x-rapidapi-key": "90c32ee4dfmsh4fb639c105f3c53p17b70ejsn4202beb6b2c8",
+		"x-rapidapi-host": "real-estate-usa.p.rapidapi.com"
+	}
+        })
+        .then(response => 
+            response.json())
+        .then(data =>{
             this.setState({
-                searchproperties: data,
+                id: data.properties.map((item) => {
+                    return `${item.id}`
+                })
+               
             })
+            console.log("aaa", this.state.id)
+        })
+
+        .catch(err => {
+            console.error(err);
         });}
+
+        // const request = require('request');
+
+        // const options = {
+        //   method: 'GET',
+        //   url: 'https://real-estate-usa.p.rapidapi.com/api/v1/properties',
+        //   qs: {postal_code: `${this.state.zipcode}`, offset: '0', limit: '200'},
+        //   headers: {
+        //     'x-rapidapi-key': '90c32ee4dfmsh4fb639c105f3c53p17b70ejsn4202beb6b2c8',
+        //     'x-rapidapi-host': 'real-estate-usa.p.rapidapi.com',
+        //     useQueryString: true
+        //   }
+        // };        
+        
+        // request(options, function (error, response, body) {
+        //     if (error) throw new Error(error);
+        //     body
+        //     this.setState({ 
+        //         id: body.map((item) => {
+        //             return `${item.properties}`
+        //     })})
+        //     console.log("aaa", this.id);
+        // });}// convert the data to json parse readable
+            // const data = JSON.parse(body).map((item) =>{
+            //     return `${item.properties}`})
+                
+            // console.log("aaa" + data)
+            // this.setState({
+            //     searchproperties: data,
+            // })
+        
 
 handleSubmit = (e) => {
     e.preventDefault()
@@ -67,16 +104,6 @@ handleInputChange = (e) => {
             )
         }
 
-        // const SearchId = ({match}) => {
-        //     return (
-        //         <SearchItem 
-                    
-        //             searchinfo={this.state.searchproperties.filter(searchinfo => searchinfo.id === +match.params.id)[0]} />
-
-        //     )
-        // }
-
-
         return (
             <div>
                 <Header />
@@ -97,8 +124,6 @@ handleInputChange = (e) => {
                         <Route path='/houselist:id' component={HouseId} /> ,
                         {/* <Route path='/searchlist:id' component={SearchId} /> , */}
                         <Redirect to='/home' />
-                    
-                    
                 </Switch>
                 <Footer />
                 
