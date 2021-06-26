@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment  } from 'react';
 import HouseList from './HouseListComponent';
 import HouseItem from './HouseItemComponent';
 import SearchList from './SearchListComponent';
@@ -6,8 +6,8 @@ import { HOUSEDETAILS } from '../shared/housedetails';
 import { HOUSEINFO } from '../shared/houseinfo';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Switch, Route, Redirect} from 'react-router-dom';
+import { Link} from 'react-router-dom';
 
 
 class Main extends Component {
@@ -25,10 +25,7 @@ class Main extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount(){
-        this.citySearch()
-       }
-
+   
     citySearch = () => {
     
     fetch(`https://us-real-estate.p.rapidapi.com/for-sale?offset=0&limit=42&state_code=${this.state.state}&city=${this.state.city}&sort=newest`, {
@@ -49,18 +46,15 @@ class Main extends Component {
     .catch(err => {
         console.error(err);
     });
-  
+   
 }
 
     
 handleSubmit = (e) => {
     e.preventDefault()
-    this.citySearch()
-    e.target.value=""
-    this.setState((state)=>({
-        city:'',
-        state:''
-    }))
+    this.citySearch();
+
+    console.log("zz",e.target.value);
 }
 
 
@@ -81,16 +75,7 @@ handleInputChange = (e) => {
         return (
             <div>
                 <Header />
-
-                {/* <Switch>
-                    <Route path='/home' component={HomePage} />
-                    <Route exact path='/directory' render={() => <Directory campsites={this.state.campsites} />} />
-                    <Route path='/directory/:campsiteId' component={CampsiteWithId} />
-                    <Route exact path='/contactus' component={Contact} />
-                    <Route exact path='/aboutus' render={() => <About partners={this.state.partners} />}  />
-                    <Redirect to='/home' />
-                </Switch> */}
-                  <div style={{display: 'flex', fontSize:"3.5vh", justifyContent:'center', alignItems:'center'}}>
+                    <div style={{display: 'flex', fontSize:"3.5vh", justifyContent:'center', alignItems:'center'}}>
                             <label for="site-search"><span>City:&nbsp;&nbsp;</span></label>
                             <input type="search" id="city" name="city"
                                 onChange={this.handleInputChange} />
@@ -100,13 +85,18 @@ handleInputChange = (e) => {
                                 onChange={this.handleInputChange} />
                             <span>&nbsp;&nbsp;</span>
                             <button type="submit" onClick={this.handleSubmit}>Search</button>
-                        </div>
-                        <br/><br/><br/>
+                            
+                    </div>
+                    <br/><br/><br/>
+
                 <Switch>
-                      
-             
-                        <Route exact path='/home' render={() => <HouseList houseinfo={this.state.houseinfo} />} />,
-                        <Route exact path ='/searchresults' render={()=> <SearchList searchresults={this.state.searchresults} city={this.state.city} state={this.state.state}/>}/>                       
+                        <Route path='/home' render={() => 
+                        <Fragment>  
+                            <SearchList searchresults={this.state.searchresults} city={this.state.city} state={this.state.state}/>
+                            <br/><br/><br/>
+                            <HouseList houseinfo={this.state.houseinfo} />
+                        </Fragment> }/> 
+                        {/* // above code is to render searchlist and houselist 2 components on the same home page */}
                         <Route path='/houselist:id' component={HouseId} /> 
                         {/* <Route path='/searchlist:id' component={SearchId} /> , */}
                         <Redirect to ='/home' />

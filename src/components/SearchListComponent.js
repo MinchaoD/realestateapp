@@ -56,16 +56,9 @@ function SearchList (props) {
 
         return (
             <div className = "container">
-                
-                <div className = "row ml-1">
-                    <h3>
-                        Search Results for {props.city} in {props.state}
-                    </h3>
-                </div>        
+                  
                 <div className="row">
- 
-                    {searchlist}
-                    
+                     {searchlist}
                 </div>
             </div>
         
