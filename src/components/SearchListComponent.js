@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 function RenderSearchList({searchresults}) {
     return (
         
-            <div className ="row justify-content-center">
+            <div className ="row ">
                 <div className = "col ">
-                    <CardDeck>
                         <Card>
                             <Link to={`/searchresults${searchresults.property_id}`} >
                                 <CardImg  height="400" src={searchresults.primary_photo.href}/>
@@ -38,7 +37,7 @@ function RenderSearchList({searchresults}) {
                                 </CardFooter>
                             </Link>
                         </Card>
-                    </CardDeck>
+                 
                 </div>
             </div>
     )
@@ -46,7 +45,10 @@ function RenderSearchList({searchresults}) {
 
 function SearchList (props) {
     
-    const searchlist = props.searchresults.map(searchhouse => {
+    const searchlist = props.searchresults
+    .filter(searchhouse => searchhouse.primary_photo !== null)  // filter out the ones without primary_photo, otherwise app will crash
+    .map(searchhouse => {
+        
         return (
             <div key = {searchhouse.lead_attributes.listing_id} className = "col-md-6 m-3 mx-auto">
                 <RenderSearchList searchresults={searchhouse} />
@@ -55,14 +57,12 @@ function SearchList (props) {
     })
 
         return (
-            <div className = "container">
-                  
+            <div className="container">
                 <div className="row">
                      {searchlist}
                 </div>
             </div>
-        
-        )
+         )
     }
 
 

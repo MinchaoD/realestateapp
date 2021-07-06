@@ -2,12 +2,13 @@ import React, { Component, Fragment  } from 'react';
 import HouseList from './HouseListComponent';
 import HouseItem from './HouseItemComponent';
 import SearchList from './SearchListComponent';
+import SearchItem from './SearchItemComponent';
 import { HOUSEDETAILS } from '../shared/housedetails';
 import { HOUSEINFO } from '../shared/houseinfo';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect} from 'react-router-dom';
-import { Link} from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
 
 
 class Main extends Component {
@@ -72,6 +73,14 @@ handleInputChange = (e) => {
                     houseinfo={this.state.houseinfo.filter(houseinfo => houseinfo.id === +match.params.id)[0]} />
             )
         }
+
+        const SearchId = ({match}) => {
+            return (
+                <SearchItem 
+                    searchitem={this.state.searchresults.filter(searchitem => searchitem.id === +match.params.id)[0]} />
+            )
+        }
+
         return (
             <div>
                 <Header />
@@ -98,7 +107,7 @@ handleInputChange = (e) => {
                         </Fragment> }/> 
                         {/* // above code is to render searchlist and houselist 2 components on the same home page */}
                         <Route path='/houselist:id' component={HouseId} /> 
-                        {/* <Route path='/searchlist:id' component={SearchId} /> , */}
+                        <Route path='/searchlist:id' component={SearchId} /> ,
                         <Redirect to ='/home' />
                 </Switch>
                 <Footer />
