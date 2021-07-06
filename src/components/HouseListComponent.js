@@ -61,9 +61,9 @@ function HouseList (props) {
             <div className = "container">
                 
                 <div className = "row ml-1">
-                    <h3>
+                    <h2>
                         Hot Homes Listing
-                    </h3>
+                    </h2>
                 </div>        
                 <div className="row">
  

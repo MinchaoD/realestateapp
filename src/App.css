@@ -1,5 +1,5 @@
 body {
-  /* font-family: "Open Sans", sans-serif; */
+  font-family: "Open Sans", sans-serif;
   font-family:Garamond, Georgia, serif;
   background-color: black;
   color:white
@@ -7,13 +7,11 @@ body {
   
 }
 
-
-/* h1, h2, h3, .card-body>.card-title {
+h1, h3, .card-body>.card-title {
   font-family: "Lobster", cursive;
-} */
+}
 
 .card-title {
-  font-weight: bold;
   font-size: 1.5rem;
   color:black;
  

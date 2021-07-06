@@ -62,7 +62,7 @@ class Header extends Component {
                                     exitTransform: 'scale(0.5) translateY(50%)'
                                 }}>
 
-                                <h1>Find Your Dream Home in Seattle</h1>
+                                <h1>Find Your Dream Home</h1>
                             </FadeTransform>
                                
                             </div>

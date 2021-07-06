@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment  } from 'react';
 import HouseList from './HouseListComponent';
 import HouseItem from './HouseItemComponent';
 import SearchList from './SearchListComponent';
+import SearchItem from './SearchItemComponent';
 import { HOUSEDETAILS } from '../shared/housedetails';
 import { HOUSEINFO } from '../shared/houseinfo';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect} from 'react-router-dom';
+import { Container, Row, Col } from 'reactstrap';
 
 
 class Main extends Component {
@@ -15,84 +17,53 @@ class Main extends Component {
         this.state = {
             housedetails: HOUSEDETAILS,
             houseinfo: HOUSEINFO,
-            id:[],
-            zipcode:""
+            city:"",
+            state:"",
+            searchresults:[]
 
         };
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount(){
-        this.zipcodeSearch()
-       }
-
-    zipcodeSearch = () => {
-               
-        fetch(`https://real-estate-usa.p.rapidapi.com/api/v1/properties?postal_code=${this.state.zipcode}&offset=0&limit=200`, {
-        "method": "GET",
-        "headers": {
+   
+    citySearch = () => {
+    
+    fetch(`https://us-real-estate.p.rapidapi.com/for-sale?offset=0&limit=42&state_code=${this.state.state}&city=${this.state.city}&sort=newest`, {
+	"method": "GET",
+	"headers": {
 		"x-rapidapi-key": "90c32ee4dfmsh4fb639c105f3c53p17b70ejsn4202beb6b2c8",
-		"x-rapidapi-host": "real-estate-usa.p.rapidapi.com"
+		"x-rapidapi-host": "us-real-estate.p.rapidapi.com"
 	}
+    })
+    .then(response => 
+        response.json())
+    .then(data =>{
+        this.setState({
+            searchresults: data.data.results
         })
-        .then(response => 
-            response.json())
-        .then(data =>{
-            this.setState({
-                id: data.properties.map((item) => {
-                    return `${item.id}`
-                })
-               
-            })
-            console.log("aaa", this.state.id)
-        })
+        console.log("aaa", this.state.searchresults)
+    })
+    .catch(err => {
+        console.error(err);
+    });
+   
+}
 
-        .catch(err => {
-            console.error(err);
-        });}
-
-        // const request = require('request');
-
-        // const options = {
-        //   method: 'GET',
-        //   url: 'https://real-estate-usa.p.rapidapi.com/api/v1/properties',
-        //   qs: {postal_code: `${this.state.zipcode}`, offset: '0', limit: '200'},
-        //   headers: {
-        //     'x-rapidapi-key': '90c32ee4dfmsh4fb639c105f3c53p17b70ejsn4202beb6b2c8',
-        //     'x-rapidapi-host': 'real-estate-usa.p.rapidapi.com',
-        //     useQueryString: true
-        //   }
-        // };        
-        
-        // request(options, function (error, response, body) {
-        //     if (error) throw new Error(error);
-        //     body
-        //     this.setState({ 
-        //         id: body.map((item) => {
-        //             return `${item.properties}`
-        //     })})
-        //     console.log("aaa", this.id);
-        // });}// convert the data to json parse readable
-            // const data = JSON.parse(body).map((item) =>{
-            //     return `${item.properties}`})
-                
-            // console.log("aaa" + data)
-            // this.setState({
-            //     searchproperties: data,
-            // })
-        
-
+    
 handleSubmit = (e) => {
     e.preventDefault()
-    this.zipcodeSearch()
+    this.citySearch();
+
+    console.log("zz",e.target.value);
 }
+
 
 handleInputChange = (e) => {
     this.setState({
-        zipcode: e.target.value
+        [e.target.name]: e.target.value
     })
 }
-
-
     render() {
 
         const HouseId = ({match}) => {
@@ -100,30 +71,44 @@ handleInputChange = (e) => {
                 <HouseItem 
                     houseitem={this.state.housedetails.filter(houseitem => houseitem.id === +match.params.id)[0]}
                     houseinfo={this.state.houseinfo.filter(houseinfo => houseinfo.id === +match.params.id)[0]} />
+            )
+        }
 
+        const SearchId = ({match}) => {
+            return (
+                <SearchItem 
+                    searchitem={this.state.searchresults.filter(searchitem => searchitem.id === +match.params.id)[0]} />
             )
         }
 
         return (
             <div>
                 <Header />
-                
-                <Switch>
-                        <div style={{display: 'flex', fontSize:"3.5vh", justifyContent:'center', alignItems:'center'}}>
-                            <label for="site-search"><span>Search Houses at this Zipcode:&nbsp;&nbsp;</span></label>
-                            <input type="search" id="zipcode" name="zipcode"
-                                aria-label="Search this zipcode" 
+                    <div style={{display: 'flex', fontSize:"3.5vh", justifyContent:'center', alignItems:'center'}}>
+                            <label for="site-search"><span>City:&nbsp;&nbsp;</span></label>
+                            <input type="search" id="city" name="city"
+                                onChange={this.handleInputChange} />
+                            <span>&nbsp;&nbsp;</span>
+                            <label for="site-search"><span>State:&nbsp;&nbsp;</span></label>
+                            <input type="search" id="state" name="state"
                                 onChange={this.handleInputChange} />
                             <span>&nbsp;&nbsp;</span>
                             <button type="submit" onClick={this.handleSubmit}>Search</button>
-                        </div>
-                        <br/><br/><br/>
-             
-                        <Route path='/home' render={() => <HouseList houseinfo={this.state.houseinfo} />} />,
-                        <SearchList searchinfo={this.state.searchproperties} />,
-                        <Route path='/houselist:id' component={HouseId} /> ,
-                        {/* <Route path='/searchlist:id' component={SearchId} /> , */}
-                        <Redirect to='/home' />
+                            
+                    </div>
+                    <br/><br/><br/>
+
+                <Switch>
+                        <Route path='/home' render={() => 
+                        <Fragment>  
+                            <SearchList searchresults={this.state.searchresults} city={this.state.city} state={this.state.state}/>
+                            <br/><br/><br/>
+                            <HouseList houseinfo={this.state.houseinfo} />
+                        </Fragment> }/> 
+                        {/* // above code is to render searchlist and houselist 2 components on the same home page */}
+                        <Route path='/houselist:id' component={HouseId} /> 
+                        <Route path='/searchlist:id' component={SearchId} /> ,
+                        <Redirect to ='/home' />
                 </Switch>
                 <Footer />
                 
