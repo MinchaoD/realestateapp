@@ -5,9 +5,9 @@ class Footer extends Component {
         const date = new Date();
         const year = date.getFullYear()
         return (
-            <React.Fragment>
+            <div>
                <footer className="site-footer">
-                    <div className="container">
+                    <div className="container-fluid">
                     <hr  style={{
                                 height: .5,
                                 borderColor : 'white'
@@ -41,7 +41,7 @@ class Footer extends Component {
 
               
 
-            </React.Fragment>
+            </div>
             
         );
     }

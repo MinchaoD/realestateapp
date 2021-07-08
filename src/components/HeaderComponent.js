@@ -53,7 +53,7 @@ class Header extends Component {
         return (
             <React.Fragment>
                 <Jumbotron fluid>
-                    <div className="container">
+                    <div className="container-fluid">
                         <div className="row row-content">
                             <div className="col">
                             <FadeTransform

@@ -8,7 +8,6 @@ import { HOUSEINFO } from '../shared/houseinfo';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect} from 'react-router-dom';
-import { Container, Row, Col } from 'reactstrap';
 
 
 class Main extends Component {
@@ -42,7 +41,7 @@ class Main extends Component {
         this.setState({
             searchresults: data.data.results
         })
-        console.log("aaa", this.state.searchresults)
+       
     })
     .catch(err => {
         console.error(err);
@@ -50,7 +49,6 @@ class Main extends Component {
    
 }
 
-    
 handleSubmit = (e) => {
     e.preventDefault()
     this.citySearch();
@@ -75,39 +73,44 @@ handleInputChange = (e) => {
         }
 
         const SearchId = ({match}) => {
+            const singlelist =[]
+            
+            this.state.searchresults.forEach(function(item, index){             // use foreach to loop all the lists and find the one match with the id
+                console.log('ddd', +match.params.id, item.property_id)
+                    if(+match.params.id == item.property_id){
+                    singlelist.push(item)
+                    }})
+                
             return (
                 <SearchItem 
-                    searchitem={this.state.searchresults.filter(searchitem => searchitem.id === +match.params.id)[0]} />
-            )
-        }
+                    searchitem = {singlelist[0]}/>  // need [0] to get the content of the data
+                     )}
 
-        return (
-            <div>
+            return (
+            <div className="container-fluid">
                 <Header />
-                    <div style={{display: 'flex', fontSize:"3.5vh", justifyContent:'center', alignItems:'center'}}>
-                            <label for="site-search"><span>City:&nbsp;&nbsp;</span></label>
-                            <input type="search" id="city" name="city"
-                                onChange={this.handleInputChange} />
-                            <span>&nbsp;&nbsp;</span>
-                            <label for="site-search"><span>State:&nbsp;&nbsp;</span></label>
-                            <input type="search" id="state" name="state"
-                                onChange={this.handleInputChange} />
-                            <span>&nbsp;&nbsp;</span>
-                            <button type="submit" onClick={this.handleSubmit}>Search</button>
-                            
-                    </div>
-                    <br/><br/><br/>
-
                 <Switch>
                         <Route path='/home' render={() => 
                         <Fragment>  
+                            <div style={{display: 'flex', fontSize:"3.5vh", justifyContent:'center', alignItems:'center'}}>
+                                <label for="site-search"><span>City:&nbsp;&nbsp;</span></label>
+                                <input type="search" id="city" name="city"
+                                    onChange={this.handleInputChange} />
+                                <span>&nbsp;&nbsp;</span>
+                                <label for="site-search"><span>State:&nbsp;&nbsp;</span></label>
+                                <input type="search" id="state" name="state"
+                                    onChange={this.handleInputChange} />
+                                <span>&nbsp;&nbsp;</span>
+                                <button type="submit" onClick={this.handleSubmit}>Search</button>
+                            </div>
+                            <br/><br/><br/>
                             <SearchList searchresults={this.state.searchresults} city={this.state.city} state={this.state.state}/>
                             <br/><br/><br/>
                             <HouseList houseinfo={this.state.houseinfo} />
                         </Fragment> }/> 
                         {/* // above code is to render searchlist and houselist 2 components on the same home page */}
                         <Route path='/houselist:id' component={HouseId} /> 
-                        <Route path='/searchlist:id' component={SearchId} /> ,
+                        <Route path='/searchresults:id' component={SearchId} /> 
                         <Redirect to ='/home' />
                 </Switch>
                 <Footer />

@@ -51,16 +51,16 @@ function HouseList (props) {
 
     const houselist = props.houseinfo.map(house => {
         return (
-            <div key = {house.id} className = "col-md-6 m-3 mx-auto">
+            <div key = {house.id} className = "col-md-4 m-3 mx-auto">
                 <RenderHouseList houseinfo={house} />
             </div>
         )
     })
 
         return (
-            <div className = "container">
+            <div className = "container-fluid">
                 
-                <div className = "row ml-1">
+                <div className = "row ml-3">
                     <h2>
                         Hot Homes Listing
                     </h2>

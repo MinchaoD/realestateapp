@@ -16,17 +16,17 @@ function RenderMainImage(searchitem) {
                     <Row >
                         <Col md={8}>               
                             <Card>                       
-                                <CardImg  height="530" src={searchitem.image}/>                           
+                                <CardImg  height="530" src={searchitem.primary_photo.href}/>                           
                             </Card>
                         </Col>
                         <Col md={4} >
                             <Card>
-                                <CardImg  height="250" src={searchitem.image1} align />
+                                <CardImg  height="250" src={searchitem.photos[0].href} align />
                             </Card>
                             
                                 <br/>
                             <Card>
-                                <CardImg  height="250" src={searchitem.image2} mb-6 />
+                                <CardImg  height="250" src={searchitem.photos[1].href} mb-6 />
                             </Card>
                             
                         </Col>
@@ -35,17 +35,17 @@ function RenderMainImage(searchitem) {
                     <Row>
                         <Col md={4}>
                             <Card>
-                                <CardImg  height="250" src={searchitem.image3} />
+                                <CardImg  height="250" src={searchitem.photos[2].href} />
                             </Card>
                         </Col>  
                         <Col md={4}>
                             <Card>
-                                <CardImg  height="250" src={searchitem.image4} />
+                                <CardImg  height="250" src={searchitem.photos[3].href} />
                             </Card>
                         </Col>  
                         <Col md={4}>
                             <Card>
-                                <CardImg  height="250" src={searchitem.image5} />
+                                <CardImg  height="250" src={searchitem.photos[4].href} />
                             </Card>
                         </Col>  
                     </Row> 
@@ -127,7 +127,7 @@ function RenderDescription(searchitem) {
 
                 <Row>
                     <Col>
-                     
+             
                         <h5>{searchitem.tags}</h5>
                     </Col>
                 </Row>
@@ -407,38 +407,41 @@ function Map(searchitem) {
 
 
 function SearchItem (props) {
+    console.log("searchitem", props.searchitem)
     if (props.searchitem){
-    return (
-            <div className="container">
-                <Row>
-                    <Col className="mx-3">
-                    <Button variant="outline-light" style={{backgroundColor:"black"}}><Link to="/home" style={{ color: 'white', fontSize:'1.8rem'}}>Home</Link></Button>
-                    </Col>
-                </Row>
-                <br/><br/>
-                {RenderMainImage(props.searchitem)}
-                <br/><br/>
-                {RenderInfo(props.searchitem)}
-            
-                {RenderDescription(props.searchitem)}
-                <br/><br/><br/>
-                <Row style={{justifyContent: "center"}}>
-                {Map(props.searchitem)}
-                </Row>
-                <br/><br/><br/>
-                <FadeTransform
-                                in
-                                transformProps={{
-                                    exitTransform: 'scale(0.5) translateY(50%)'
-                                }}>
+            return (
+                console.log("searchresult",props.searchitem),
+                <div className="container">
+                    
+                    <Row>
+                        <Col className="mx-3">
+                        <Button variant="outline-light" style={{backgroundColor:"black"}}><Link to="/home" style={{ color: 'white', fontSize:'1.8rem'}}>Home</Link></Button>
+                        </Col>
+                    </Row>
+                    <br/><br/>
+                    {RenderMainImage(props.searchitem)}
+                    <br/><br/>
+                    {RenderInfo(props.searchitem)}
+                
+                    {RenderDescription(props.searchitem)}
+                    <br/><br/><br/>
+                    <Row style={{justifyContent: "center"}}>
+                    {Map(props.searchitem)}
+                    </Row>
+                    <br/><br/><br/>
+                    <FadeTransform
+                                    in
+                                    transformProps={{
+                                        exitTransform: 'scale(0.5) translateY(50%)'
+                                    }}>
 
-                    <Tour/>
-                </FadeTransform>
-            </div>
-    )
-}
-return <div />;
-}
+                        <Tour/>
+                    </FadeTransform>
+                </div>
+           )
+        }
+        return <div />;
+        }
 
 
 

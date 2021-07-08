@@ -44,20 +44,20 @@ function RenderSearchList({searchresults}) {
 }
 
 function SearchList (props) {
-    
+    console.log("searchlist", props.searchresults)
     const searchlist = props.searchresults
     .filter(searchhouse => searchhouse.primary_photo !== null)  // filter out the ones without primary_photo, otherwise app will crash
     .map(searchhouse => {
         
         return (
-            <div key = {searchhouse.lead_attributes.listing_id} className = "col-md-6 m-3 mx-auto">
+            <div key = {searchhouse.property_id} className = "col-md-4 m-3 mx-auto">
                 <RenderSearchList searchresults={searchhouse} />
             </div>
         )
     })
 
         return (
-            <div className="container">
+            <div className="container-fluid">
                 <div className="row">
                      {searchlist}
                 </div>
