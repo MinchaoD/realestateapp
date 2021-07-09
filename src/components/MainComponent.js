@@ -9,6 +9,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect} from 'react-router-dom';
 import NotFound from './NotFound';
+import { Link } from 'react-router-dom';
 
 class Main extends Component {
     constructor(props) {
@@ -26,7 +27,6 @@ class Main extends Component {
 
    
     citySearch = () => {
-    
     fetch(`https://us-real-estate.p.rapidapi.com/for-sale?offset=0&limit=200&state_code=${this.state.state}&city=${this.state.city}&sort=newest`, {
 	"method": "GET",
 	"headers": {
@@ -40,23 +40,22 @@ class Main extends Component {
     .then(data =>{
         this.setState({
             searchresults: data.data.results
-        })
+        }
+        );
     },
-      
-    )
-       
+   )
     .catch(error => {
         const newError = new Error("Wrong City or State", error);
         throw newError
-        })
+        });
     }
 
 handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
+    
     this.citySearch();
-
+  
 }
-
 
 handleInputChange = (e) => {
     this.setState({
@@ -64,6 +63,12 @@ handleInputChange = (e) => {
     })
 }
     render() {
+        const SearchResults =()=>{
+            return (
+                <SearchList  searchresults={this.state.searchresults} city={this.state.city} state={this.state.state}/>
+                
+            )
+        }
 
         const HouseId = ({match}) => {
             return (
@@ -79,13 +84,11 @@ handleInputChange = (e) => {
                     if(+match.params.id == item.property_id){
                     singlelist.push(item)
                     }})
-                
-            return (
-                <SearchItem 
-                    searchitem = {singlelist[0]}/>  // need [0] to get the content of the data
-                     )}
-
-
+                return (
+                    <SearchItem 
+                        searchitem = {singlelist[0]}
+                        city={this.state.city}/>  // need [0] to get the content of the data
+                        )}
             return (
             <div className="container-fluid">
                 <Header />
@@ -101,17 +104,17 @@ handleInputChange = (e) => {
                                 <input type="search" id="state" name="state"
                                     onChange={this.handleInputChange} />
                                 <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                <button type="submit" class="btn btn-outline-light btn-lg" style={{fontSize: '4vh'}} onClick={this.handleSubmit}>Search</button>
+                                <button type="submit" class="btn btn-outline-light btn-lg" style={{fontSize: '4vh'}} onClick={this.handleSubmit} ><Link to={`/searchresults${this.state.city}`}>Search</Link></button>
                             </div>
                             <br/><br/><br/>
-                            <SearchList searchresults={this.state.searchresults} city={this.state.city} state={this.state.state}
-                                       />
-                            <br/><br/><br/>
+                            
                             <HouseList houseinfo={this.state.houseinfo} />
+                            
                         </Fragment> }/> 
                         {/* // above code is to render searchlist and houselist 2 components on the same home page */}
+                        <Route extact path={`/searchresults:${this.state.city}`} component={SearchResults} />
                         <Route path='/houselist:id' component={HouseId} /> 
-                        <Route path='/searchresults:id' component={SearchId} /> 
+                        <Route path='/searchresult:id' component={SearchId} /> 
                         <Route path='/404' Component={NotFound} />
                         <Redirect to ='/home' />
                 </Switch>

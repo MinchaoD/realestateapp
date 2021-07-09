@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { Card, CardImg, CardTitle, CardText, CardBody, CardFooter} from 'reactstrap';
+import { Card, CardImg, CardTitle, CardText, CardBody, Row, Col, Button, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
 
 function RenderSearchList({searchresults}) {
    
     return (
-        
+       
             <div className ="row ">
+               
                 <div className = "col ">
                         <Card>
-                            <Link to={`/searchresults${searchresults.property_id}`} >
+                            <Link to={`/searchresult${searchresults.property_id}`} >
                                 <CardImg  height="400" src={searchresults.primary_photo.href}/>
                                 <CardBody className="cardinfo" >
                                     <CardTitle> $ {searchresults.list_price}</CardTitle> 
@@ -42,6 +43,7 @@ function RenderSearchList({searchresults}) {
                  
                 </div>
             </div>
+        
     )
 }
 
@@ -79,8 +81,15 @@ function SearchList (props) {
         return (
             <div className="container-fluid">
                 <div className="row">
+                    <Row>
+                    <Col className="mx-3">
+                    <Link to="/home"><Button color="outline-light" style={{fontSize:'3vh'}}> Home</Button></Link>
+                    </Col>
+                    </Row>
+                </div>
+                <br/> 
+                <div className="row">
                      {searchlist}
-                     {' '}{' '}{' '}{' '}{' '}{' '}
                      <ReactPaginate
                     previousLabel={"Previous"}
                     nextLabel={"Next"}

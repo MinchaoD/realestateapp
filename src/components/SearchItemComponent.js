@@ -365,7 +365,7 @@ function SearchItem (props) {
                     
                     <Row>
                         <Col className="mx-3">
-                        <Button variant="outline-light" style={{backgroundColor:"black"}}><Link to="/home" style={{ color: 'white', fontSize:'1.8rem'}}>Back</Link></Button>
+                        <Link to={`/searchresults${props.city}`}><Button color="outline-light" style={{fontSize:'3vh'}}> Back to Search Results</Button></Link>
                         </Col>
                     </Row>
                     <br/><br/>
