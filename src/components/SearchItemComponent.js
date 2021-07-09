@@ -124,13 +124,6 @@ function RenderDescription(searchitem) {
                 </Row>
                 <br/>
                 <br/>
-
-                <Row>
-                    <Col>
-             
-                        <h5>{searchitem.tags}</h5>
-                    </Col>
-                </Row>
             </div>
         )
     }
@@ -328,70 +321,20 @@ class Tour extends Component{
 }
 
 
-var houseLat = ""
-var houseLng = ""
+function Map(searchitem){
+    function showMap() {
 
-
-function ShowMap(houseinfo) {
-//    const [houseLat, sethouseLat] = useState("")
-//    const [houseLng, sethouseLng] = useState("")
-
-         Geocode.setApiKey('AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8');
-         Geocode.setLanguage('en');
-         Geocode.setRegion('us');
-         Geocode.setLocationType('ROOFTOP');
-         Geocode.enableDebug();
-         Geocode.fromAddress(`${houseinfo.location}`).then(
-           (response) => {
-             const { lat, lng } = response.results[0].geometry.location;
-        //   sethouseLat(lat)
-        //   sethouseLng(lng)
-
-        houseLat = lat
-        houseLng = lng
-         console.log("abc" + houseLat)
-         console.log('fee' + houseLng)
-     
-     },
-     (error) => {
-       console.error(error);
-     }
-   );
-
-//    if (houseLat === "" || houseLat === 40.7222993) {
-//     Geocode.setApiKey('AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8');
-//     Geocode.setLanguage('en');
-//     Geocode.setRegion('us');
-//     Geocode.setLocationType('ROOFTOP');
-//     Geocode.enableDebug();
-//     Geocode.fromAddress(`${houseinfo.location}`).then(
-//         (response) => {
-//           const { lat1, lng1 } = response.results[0].geometry.location;
-//        const houseLat1 = lat1
-//         const houseLng1 = lng1 
-//     console.log("xyz" + `${houseinfo.location}`)})} else{
+        if(searchitem){
+            return (
     
-       
-            return  (
-                
             <GoogleMap
             defaultZoom={15}
-            defaultCenter={{lat: houseLat, lng: houseLng}}>
+            defaultCenter={{lat: searchitem.location.address.coordinate.lat, lng: searchitem.location.address.coordinate.lon}}>
             <Marker
-                position={{lat:houseLat, lng: houseLng}} />
-            </GoogleMap>
-
-                )}
- 
-const WrappedMap = withScriptjs(withGoogleMap(ShowMap))
-
- 
-  
-function Map(searchitem) {
-
-    if(searchitem){
-
-   ShowMap(searchitem)
+                position={{lat:searchitem.location.address.coordinate.lat, lng: searchitem.location.address.coordinate.lon}} />
+            </GoogleMap>)}}
+    
+    const WrappedMap = withScriptjs(withGoogleMap(showMap))
   
   return (
     <div style = {{ width: '50vw', height: '50vh'}}>
@@ -403,7 +346,7 @@ function Map(searchitem) {
       
     </div>
   )
-}}
+}
 
 
 function SearchItem (props) {
@@ -426,6 +369,7 @@ function SearchItem (props) {
                     {RenderDescription(props.searchitem)}
                     <br/><br/><br/>
                     <Row style={{justifyContent: "center"}}>
+               
                     {Map(props.searchitem)}
                     </Row>
                     <br/><br/><br/>

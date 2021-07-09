@@ -19,7 +19,6 @@ class Main extends Component {
             city:"",
             state:"",
             searchresults:[]
-
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -53,7 +52,6 @@ handleSubmit = (e) => {
     e.preventDefault()
     this.citySearch();
 
-    console.log("zz",e.target.value);
 }
 
 
@@ -74,9 +72,7 @@ handleInputChange = (e) => {
 
         const SearchId = ({match}) => {
             const singlelist =[]
-            
             this.state.searchresults.forEach(function(item, index){             // use foreach to loop all the lists and find the one match with the id
-                console.log('ddd', +match.params.id, item.property_id)
                     if(+match.params.id == item.property_id){
                     singlelist.push(item)
                     }})
@@ -85,6 +81,7 @@ handleInputChange = (e) => {
                 <SearchItem 
                     searchitem = {singlelist[0]}/>  // need [0] to get the content of the data
                      )}
+
 
             return (
             <div className="container-fluid">

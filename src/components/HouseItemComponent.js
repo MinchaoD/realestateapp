@@ -11,22 +11,22 @@ function RenderMainImage(houseitem) {
     if(houseitem){
  
         return(
-            <div className = "container">
+            <div className = "container-fluid">
                 <Zoom>
                     <Row >
                         <Col md={8}>               
                             <Card>                       
-                                <CardImg  height="530" src={houseitem.image}/>                           
+                                <CardImg  height="820" src={houseitem.image}/>                           
                             </Card>
                         </Col>
                         <Col md={4} >
                             <Card>
-                                <CardImg  height="250" src={houseitem.image1} align />
+                                <CardImg  height="400" src={houseitem.image1} align />
                             </Card>
                             
                                 <br/>
                             <Card>
-                                <CardImg  height="250" src={houseitem.image2} mb-6 />
+                                <CardImg  height="400" src={houseitem.image2} mb-6 />
                             </Card>
                             
                         </Col>
@@ -35,17 +35,17 @@ function RenderMainImage(houseitem) {
                     <Row>
                         <Col md={4}>
                             <Card>
-                                <CardImg  height="250" src={houseitem.image3} />
+                                <CardImg  height="400" src={houseitem.image3} />
                             </Card>
                         </Col>  
                         <Col md={4}>
                             <Card>
-                                <CardImg  height="250" src={houseitem.image4} />
+                                <CardImg  height="400" src={houseitem.image4} />
                             </Card>
                         </Col>  
                         <Col md={4}>
                             <Card>
-                                <CardImg  height="250" src={houseitem.image5} />
+                                <CardImg  height="400" src={houseitem.image5} />
                             </Card>
                         </Col>  
                     </Row> 
@@ -61,7 +61,7 @@ function RenderMainImage(houseitem) {
 function RenderInfo(houseinfo) {
     if(houseinfo){
         return(
-            <div className = "container">
+            <div className = "container-fluid">
                  <Row>
                     <Col md={6}>
                         <h4>{houseinfo.location}</h4>
@@ -106,7 +106,7 @@ function RenderDescription(houseitem) {
     if(houseitem){
  
         return(
-            <div className = "container">
+            <div className = "container-fluid">
                 <Row>
                     <Col md={2}>
                         <h4 style={{ color: 'grey' }}>Year Built: </h4>
@@ -128,7 +128,7 @@ function RenderDescription(houseitem) {
                 <Row>
                     <Col>
                      
-                        <h5>{houseitem.description}</h5>
+                        <h4>{houseitem.description}</h4>
                     </Col>
                 </Row>
             </div>
@@ -326,72 +326,21 @@ class Tour extends Component{
         );
     }
 }
+           
+function Map(houseinfo){
+    function showMap() {
 
-
-var houseLat = ""
-var houseLng = ""
-
-
-function ShowMap(houseinfo) {
-//    const [houseLat, sethouseLat] = useState("")
-//    const [houseLng, sethouseLng] = useState("")
-
-         Geocode.setApiKey('AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8');
-         Geocode.setLanguage('en');
-         Geocode.setRegion('us');
-         Geocode.setLocationType('ROOFTOP');
-         Geocode.enableDebug();
-         Geocode.fromAddress(`${houseinfo.location}`).then(
-           (response) => {
-             const { lat, lng } = response.results[0].geometry.location;
-        //   sethouseLat(lat)
-        //   sethouseLng(lng)
-
-        houseLat = lat
-        houseLng = lng
-         console.log("abc" + houseLat)
-         console.log('fee' + houseLng)
-     
-     },
-     (error) => {
-       console.error(error);
-     }
-   );
-
-//    if (houseLat === "" || houseLat === 40.7222993) {
-//     Geocode.setApiKey('AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8');
-//     Geocode.setLanguage('en');
-//     Geocode.setRegion('us');
-//     Geocode.setLocationType('ROOFTOP');
-//     Geocode.enableDebug();
-//     Geocode.fromAddress(`${houseinfo.location}`).then(
-//         (response) => {
-//           const { lat1, lng1 } = response.results[0].geometry.location;
-//        const houseLat1 = lat1
-//         const houseLng1 = lng1 
-//     console.log("xyz" + `${houseinfo.location}`)})} else{
+        if(houseinfo){
+            return (
     
-       
-            return  (
-                
             <GoogleMap
             defaultZoom={15}
-            defaultCenter={{lat: houseLat, lng: houseLng}}>
+            defaultCenter={{lat: houseinfo.lat, lng: houseinfo.lon}}>
             <Marker
-                position={{lat:houseLat, lng: houseLng}} />
-            </GoogleMap>
-
-                )}
- 
-const WrappedMap = withScriptjs(withGoogleMap(ShowMap))
-
- 
-  
-function Map(houseinfo) {
-
-    if(houseinfo){
-
-   ShowMap(houseinfo)
+                position={{lat:houseinfo.lat, lng: houseinfo.lon}} />
+            </GoogleMap>)}}
+    
+    const WrappedMap = withScriptjs(withGoogleMap(showMap))
   
   return (
     <div style = {{ width: '50vw', height: '50vh'}}>
@@ -403,13 +352,13 @@ function Map(houseinfo) {
       
     </div>
   )
-}}
+}
 
 
 function HouseItem (props) {
     if (props.houseitem || props.houseinfo){
     return (
-            <div className="container">
+            <div className="container-fluid">
                 <Row>
                     <Col className="mx-3">
                     <Button variant="outline-light" style={{backgroundColor:"black"}}><Link to="/home" style={{ color: 'white', fontSize:'1.8rem'}}>Home</Link></Button>
