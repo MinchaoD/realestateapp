@@ -8,7 +8,7 @@ import { HOUSEINFO } from '../shared/houseinfo';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect} from 'react-router-dom';
-
+import NotFound from './NotFound';
 
 class Main extends Component {
     constructor(props) {
@@ -27,26 +27,29 @@ class Main extends Component {
    
     citySearch = () => {
     
-    fetch(`https://us-real-estate.p.rapidapi.com/for-sale?offset=0&limit=42&state_code=${this.state.state}&city=${this.state.city}&sort=newest`, {
+    fetch(`https://us-real-estate.p.rapidapi.com/for-sale?offset=0&limit=200&state_code=${this.state.state}&city=${this.state.city}&sort=newest`, {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-key": "90c32ee4dfmsh4fb639c105f3c53p17b70ejsn4202beb6b2c8",
 		"x-rapidapi-host": "us-real-estate.p.rapidapi.com"
 	}
     })
+
     .then(response => 
         response.json())
     .then(data =>{
         this.setState({
             searchresults: data.data.results
         })
+    },
+      
+    )
        
-    })
-    .catch(err => {
-        console.error(err);
-    });
-   
-}
+    .catch(error => {
+        const newError = new Error("Wrong City or State", error);
+        throw newError
+        })
+    }
 
 handleSubmit = (e) => {
     e.preventDefault()
@@ -89,7 +92,7 @@ handleInputChange = (e) => {
                 <Switch>
                         <Route path='/home' render={() => 
                         <Fragment>  
-                            <div style={{display: 'flex', fontSize:"3.5vh", justifyContent:'center', alignItems:'center'}}>
+                            <div style={{display: 'flex', fontSize:"3vh", justifyContent:'center', alignItems:'center'}}>
                                 <label for="site-search"><span>City:&nbsp;&nbsp;</span></label>
                                 <input type="search" id="city" name="city"
                                     onChange={this.handleInputChange} />
@@ -97,17 +100,19 @@ handleInputChange = (e) => {
                                 <label for="site-search"><span>State:&nbsp;&nbsp;</span></label>
                                 <input type="search" id="state" name="state"
                                     onChange={this.handleInputChange} />
-                                <span>&nbsp;&nbsp;</span>
-                                <button type="submit" onClick={this.handleSubmit}>Search</button>
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <button type="submit" class="btn btn-outline-light btn-lg" style={{fontSize: '4vh'}} onClick={this.handleSubmit}>Search</button>
                             </div>
                             <br/><br/><br/>
-                            <SearchList searchresults={this.state.searchresults} city={this.state.city} state={this.state.state}/>
+                            <SearchList searchresults={this.state.searchresults} city={this.state.city} state={this.state.state}
+                                       />
                             <br/><br/><br/>
                             <HouseList houseinfo={this.state.houseinfo} />
                         </Fragment> }/> 
                         {/* // above code is to render searchlist and houselist 2 components on the same home page */}
                         <Route path='/houselist:id' component={HouseId} /> 
                         <Route path='/searchresults:id' component={SearchId} /> 
+                        <Route path='/404' Component={NotFound} />
                         <Redirect to ='/home' />
                 </Switch>
                 <Footer />

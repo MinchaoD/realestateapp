@@ -231,16 +231,16 @@ class Tour extends Component{
     render(){
         const errors = this.validate(this.state.firstName, this.state.lastName, this.state.phoneNum, this.state.email, this.state.date);   
         return (
-                <div className="container">
+                <div className="container-fluid">
                     <div>
-                        <h2 style={{color:"green", fontWeight: 'bold'}} align="center">Schedule Your Tour</h2>
-                        <hr />
+                        <h2 style={{color:"green", fontWeight: 'bold', fontSize:'4.5vh'}} align="center">Schedule Your Tour</h2>
+                        <hr /> <hr /> <hr />
                     </div>
                     <div >
                         <Form onSubmit={this.handleSubmit} >
                         <FormGroup row>
-                                <Label htmlFor="firstName" md={2} align="right" >First Name</Label>
-                                <Col md={4}>
+                                <Label htmlFor="firstName" md={2} align="right" ><h4>First Name</h4></Label>
+                                <Col md={3}>
                                     <Input type="text" id="firstName" name="firstName"
                                         placeholder="First Name"
                                         value={this.state.firstName}
@@ -250,9 +250,9 @@ class Tour extends Component{
                                     <FormFeedback>{errors.firstName}</FormFeedback>
                                 </Col>
                           
-                                    <Label htmlFor="lastName" md={2} align="right">Last Name</Label>
+                                    <Label htmlFor="lastName" md={2} align="right"><h4>Last Name</h4></Label>
                             
-                                <Col md={4}>
+                                <Col md={3}>
                                     <Input type="text" id="lastName" name="lastName"
                                         placeholder="Last Name"
                                         value={this.state.lastName}
@@ -264,8 +264,8 @@ class Tour extends Component{
                             </FormGroup>
                           
                             <FormGroup row>
-                                <Label htmlFor="phoneNum" md={2} align="right">Phone</Label>
-                                <Col md={4}>
+                                <Label htmlFor="phoneNum" md={2} align="right"><h4>Phone</h4></Label>
+                                <Col md={3}>
                                     <Input type="tel" id="phoneNum" name="phoneNum"
                                         placeholder="Phone number"
                                         value={this.state.phoneNum}
@@ -274,8 +274,8 @@ class Tour extends Component{
                                         onChange={this.handleInputChange} />
                                     <FormFeedback>{errors.phoneNum}</FormFeedback>
                                 </Col>
-                                <Label htmlFor="email" md={2} align="right">Email</Label>
-                                <Col md={4}>
+                                <Label htmlFor="email" md={2} align="right"><h4>Email</h4></Label>
+                                <Col md={3}>
                                     <Input type="email" id="email" name="email"
                                         placeholder="Email"
                                         value={this.state.email}
@@ -287,8 +287,8 @@ class Tour extends Component{
                             </FormGroup>
                           
                             <FormGroup row>
-                                <Label htmlFor="date" md={2} align="right">Date</Label>
-                                    <Col md={4}>
+                                <Label htmlFor="date" md={2} align="right"><h4>Date</h4></Label>
+                                    <Col md={3}>
                                         <Input type="date" id="date" name="date" placeholder="mm/dd/yyyy"
                                         value={this.state.date}
                                         invalid={errors.date}
@@ -296,8 +296,8 @@ class Tour extends Component{
                                         onChange={this.handleInputChange}/>
                                         <FormFeedback>{errors.date}</FormFeedback>
                                     </Col>
-                                    <Label htmlFor="time" md={2} align="right">Time</Label>
-                                    <Col md={4}>
+                                    <Label htmlFor="time" md={2} align="right"><h4>Time</h4></Label>
+                                    <Col md={3}>
                                         <Input type="time" id="time" name="time"
                                         value={this.state.time}                                      
                                         onChange={this.handleInputChange}/>
@@ -305,15 +305,15 @@ class Tour extends Component{
                             </FormGroup>
                         
                             <FormGroup row>
-                                <Label htmlFor="notes" md={2} align="right">Notes (Optional)</Label>
-                                <Col md={4}>
+                                <Label htmlFor="notes" md={2} align="right"><h4>Notes (Optional)</h4></Label>
+                                <Col md={3}>
                                     <Input type="textarea" id="notes" name="notes"
                                         rows="6"
                                         value={this.state.notes}
                                         onChange={this.handleInputChange}></Input>
                                 </Col>
                                 <Col className="align-self-end" align="center">
-                                    <Button type="submit" size="lg" color="success">
+                                    <Button type="submit" size="lg" color="success" style={{fontSize: '3vh'}}>
                                         Schedule Tour
                                     </Button>
                                 </Col>
@@ -361,7 +361,7 @@ function HouseItem (props) {
             <div className="container-fluid">
                 <Row>
                     <Col className="mx-3">
-                    <Button variant="outline-light" style={{backgroundColor:"black"}}><Link to="/home" style={{ color: 'white', fontSize:'1.8rem'}}>Home</Link></Button>
+                    <Button variant="outline-light" style={{backgroundColor:"black"}}><Link to="/home" style={{ color: 'white', fontSize:'1.8rem'}}>Back</Link></Button>
                     </Col>
                 </Row>
                 <br/><br/>
@@ -374,7 +374,7 @@ function HouseItem (props) {
                 <Row style={{justifyContent: "center"}}>
                 {Map(props.houseinfo)}
                 </Row>
-                <br/><br/><br/>
+                <br/><br/><br/>  <br/><br/><br/><br/><br/><br/>
                 <FadeTransform
                                 in
                                 transformProps={{

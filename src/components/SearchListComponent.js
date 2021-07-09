@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
-import { Card, CardImg, CardTitle, CardText, CardBody, CardFooter, CardDeck} from 'reactstrap';
+import React, { useState } from "react";
+import { Card, CardImg, CardTitle, CardText, CardBody, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
+import ReactPaginate from "react-paginate";
 
 function RenderSearchList({searchresults}) {
+   
     return (
         
             <div className ="row ">
@@ -43,15 +45,33 @@ function RenderSearchList({searchresults}) {
     )
 }
 
+
+   
+
 function SearchList (props) {
-    console.log("searchlist", props.searchresults)
+    
+    const [pageNumber, setPageNumber] = useState(0);
+  
+    const usersPerPage = 12;
+    const pagesVisited = pageNumber * usersPerPage;
+  
+  
+  
+    const pageCount = Math.ceil(props.searchresults.length / usersPerPage);
+  
+    const changePage = ({ selected }) => {
+      setPageNumber(selected);
+    };
+   
     const searchlist = props.searchresults
+    .slice(pagesVisited, pagesVisited + usersPerPage)
     .filter(searchhouse => searchhouse.primary_photo !== null)  // filter out the ones without primary_photo, otherwise app will crash
     .map(searchhouse => {
         
         return (
             <div key = {searchhouse.property_id} className = "col-md-4 m-3 mx-auto">
                 <RenderSearchList searchresults={searchhouse} />
+               
             </div>
         )
     })
@@ -60,6 +80,18 @@ function SearchList (props) {
             <div className="container-fluid">
                 <div className="row">
                      {searchlist}
+                     {' '}{' '}{' '}{' '}{' '}{' '}
+                     <ReactPaginate
+                    previousLabel={"Previous"}
+                    nextLabel={"Next"}
+                    pageCount={pageCount}
+                    onPageChange={changePage}
+                    containerClassName={"paginationBttns"}
+                    // previousLinkClassName={"previousBttn"}
+                    // nextLinkClassName={"nextBttn"}
+                    disabledClassName={"paginationDisabled"}
+                    activeClassName={"paginationActive"}
+                />
                 </div>
             </div>
          )
@@ -67,3 +99,7 @@ function SearchList (props) {
 
 
 export default SearchList;
+
+
+
+ 

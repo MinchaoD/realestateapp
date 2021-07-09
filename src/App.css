@@ -47,7 +47,7 @@ h2, h3, h5{
 
 
 .row-content {
-  padding: 50px 0;
+  padding:80px 0;
   border-bottom: 1px ridge;
   min-height: 200px;
 }
@@ -81,7 +81,7 @@ h2, h3, h5{
 
 .jumbotron {
   margin: 0;
-  padding: 80px;
+  padding: 80px 10px;
   background-image: linear-gradient(grey, black);
 }
 
@@ -89,4 +89,38 @@ h2, h3, h5{
 
 .navbar-dark {
   background-color: #901CAD;
+}
+
+.paginationBttns {
+  width: 98%;
+  height: 60px;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  padding: 100px
+}
+
+.paginationBttns a {
+  padding: 10px;
+  margin: 8px;
+  font-size: 3vh;
+  border-radius: 5px;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+.paginationBttns a:hover {
+  color: white;
+  background-color: grey;
+}
+
+.paginationActive a {
+  color: white;
+  background-color: grey;
+}
+
+.paginationDisabled a {
+  color: grey;
+  background-color: grey;
 }

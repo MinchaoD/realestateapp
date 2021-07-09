@@ -4,29 +4,29 @@ import { Link } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
 import { FadeTransform} from 'react-animation-components';
 import { GoogleMap, withScriptjs, Marker, withGoogleMap } from 'react-google-maps';
-import Geocode from 'react-geocode';
+
  
 
 function RenderMainImage(searchitem) {
     if(searchitem){
  
         return(
-            <div className = "container">
+            <div className = "container-fluid">
                 <Zoom>
                     <Row >
                         <Col md={8}>               
                             <Card>                       
-                                <CardImg  height="530" src={searchitem.primary_photo.href}/>                           
+                                <CardImg  height="820" src={searchitem.primary_photo.href}/>                           
                             </Card>
                         </Col>
                         <Col md={4} >
                             <Card>
-                                <CardImg  height="250" src={searchitem.photos[0].href} align />
+                                <CardImg  height="400" src={searchitem.photos[0].href} align />
                             </Card>
                             
                                 <br/>
                             <Card>
-                                <CardImg  height="250" src={searchitem.photos[1].href} mb-6 />
+                                <CardImg  height="400" src={searchitem.photos[1].href} mb-6 />
                             </Card>
                             
                         </Col>
@@ -35,17 +35,17 @@ function RenderMainImage(searchitem) {
                     <Row>
                         <Col md={4}>
                             <Card>
-                                <CardImg  height="250" src={searchitem.photos[2].href} />
+                                <CardImg  height="400" src={searchitem.photos[2].href} />
                             </Card>
                         </Col>  
                         <Col md={4}>
                             <Card>
-                                <CardImg  height="250" src={searchitem.photos[3].href} />
+                                <CardImg  height="400" src={searchitem.photos[3].href} />
                             </Card>
                         </Col>  
                         <Col md={4}>
                             <Card>
-                                <CardImg  height="250" src={searchitem.photos[4].href} />
+                                <CardImg  height="400" src={searchitem.photos[4].href} />
                             </Card>
                         </Col>  
                     </Row> 
@@ -61,7 +61,7 @@ function RenderMainImage(searchitem) {
 function RenderInfo(searchitem) {
     if(searchitem){
         return(
-            <div className = "container">
+            <div className = "container-fluid">
                  <Row>
                     <Col md={6}>
                         <h4>{`${searchitem.location.address.line}, ${searchitem.location.address.city}, ${searchitem.location.address.state}`}</h4>
@@ -106,20 +106,27 @@ function RenderDescription(searchitem) {
     if(searchitem){
  
         return(
-            <div className = "container">
+            <div className = "container-fluid">
                 <Row>
-                    <Col md={2}>
+                    <Col md={1}>
                         <h4 style={{ color: 'grey' }}>Year Built: </h4>
                     </Col>
-                    <Col md={2} >
+                    <Col md={3} >
                         <h4> {searchitem.description.year_built}</h4>
                     </Col>
-                    <Col md={2}>
+                    <Col md={1}>
                         <h4  style={{ color: 'grey' }}>Property Type:</h4>
 
                     </Col>
-                    <Col >
+                    <Col md={3}>
                         <h4> {searchitem.description.type}</h4>
+                    </Col>
+                    <Col md={1}>
+                        <h4  style={{ color: 'grey' }}>Lot-SqFt:</h4>
+
+                    </Col>
+                    <Col md={3}>
+                        <h4> {searchitem.description.lot_sqft}</h4>
                     </Col>
                 </Row>
                 <br/>
@@ -224,15 +231,15 @@ class Tour extends Component{
     render(){
         const errors = this.validate(this.state.firstName, this.state.lastName, this.state.phoneNum, this.state.email, this.state.date);   
         return (
-                <div className="container">
+                <div className="container-fluid">
                     <div>
-                        <h2 style={{color:"green", fontWeight: 'bold'}} align="center">Schedule Your Tour</h2>
-                        <hr />
+                        <h2 style={{color:"green", fontWeight: 'bold', fontSize:'4.5vh'}} align="center">Schedule Your Tour</h2>
+                        <hr /> <hr /> <hr />
                     </div>
                     <div >
                         <Form onSubmit={this.handleSubmit} >
                         <FormGroup row>
-                                <Label htmlFor="firstName" md={2} align="right" >First Name</Label>
+                                <Label htmlFor="firstName" md={2} align="right"><h4>First Name</h4></Label>
                                 <Col md={4}>
                                     <Input type="text" id="firstName" name="firstName"
                                         placeholder="First Name"
@@ -243,7 +250,7 @@ class Tour extends Component{
                                     <FormFeedback>{errors.firstName}</FormFeedback>
                                 </Col>
                           
-                                    <Label htmlFor="lastName" md={2} align="right">Last Name</Label>
+                                    <Label htmlFor="lastName" md={2} align="right"><h4>Last Name</h4></Label>
                             
                                 <Col md={4}>
                                     <Input type="text" id="lastName" name="lastName"
@@ -257,7 +264,7 @@ class Tour extends Component{
                             </FormGroup>
                           
                             <FormGroup row>
-                                <Label htmlFor="phoneNum" md={2} align="right">Phone</Label>
+                                <Label htmlFor="phoneNum" md={2} align="right"><h4>Phone</h4></Label>
                                 <Col md={4}>
                                     <Input type="tel" id="phoneNum" name="phoneNum"
                                         placeholder="Phone number"
@@ -267,7 +274,7 @@ class Tour extends Component{
                                         onChange={this.handleInputChange} />
                                     <FormFeedback>{errors.phoneNum}</FormFeedback>
                                 </Col>
-                                <Label htmlFor="email" md={2} align="right">Email</Label>
+                                <Label htmlFor="email" md={2} align="right"><h4>Email</h4></Label>
                                 <Col md={4}>
                                     <Input type="email" id="email" name="email"
                                         placeholder="Email"
@@ -280,7 +287,7 @@ class Tour extends Component{
                             </FormGroup>
                           
                             <FormGroup row>
-                                <Label htmlFor="date" md={2} align="right">Date</Label>
+                                <Label htmlFor="date" md={2} align="right"><h4>Date</h4></Label>
                                     <Col md={4}>
                                         <Input type="date" id="date" name="date" placeholder="mm/dd/yyyy"
                                         value={this.state.date}
@@ -289,7 +296,7 @@ class Tour extends Component{
                                         onChange={this.handleInputChange}/>
                                         <FormFeedback>{errors.date}</FormFeedback>
                                     </Col>
-                                    <Label htmlFor="time" md={2} align="right">Time</Label>
+                                    <Label htmlFor="time" md={2} align="right"><h4>Time</h4></Label>
                                     <Col md={4}>
                                         <Input type="time" id="time" name="time"
                                         value={this.state.time}                                      
@@ -298,7 +305,7 @@ class Tour extends Component{
                             </FormGroup>
                         
                             <FormGroup row>
-                                <Label htmlFor="notes" md={2} align="right">Notes (Optional)</Label>
+                                <Label htmlFor="notes" md={2} align="right"><h4>Notes (Optional)</h4></Label>
                                 <Col md={4}>
                                     <Input type="textarea" id="notes" name="notes"
                                         rows="6"
@@ -306,7 +313,7 @@ class Tour extends Component{
                                         onChange={this.handleInputChange}></Input>
                                 </Col>
                                 <Col className="align-self-end" align="center">
-                                    <Button type="submit" size="lg" color="success">
+                                    <Button type="submit" size="lg" color="success" style={{fontSize: '3vh'}}>
                                         Schedule Tour
                                     </Button>
                                 </Col>
@@ -328,7 +335,7 @@ function Map(searchitem){
             return (
     
             <GoogleMap
-            defaultZoom={15}
+            defaultZoom={13}
             defaultCenter={{lat: searchitem.location.address.coordinate.lat, lng: searchitem.location.address.coordinate.lon}}>
             <Marker
                 position={{lat:searchitem.location.address.coordinate.lat, lng: searchitem.location.address.coordinate.lon}} />
@@ -354,11 +361,11 @@ function SearchItem (props) {
     if (props.searchitem){
             return (
                 console.log("searchresult",props.searchitem),
-                <div className="container">
+                <div className="container-fluid">
                     
                     <Row>
                         <Col className="mx-3">
-                        <Button variant="outline-light" style={{backgroundColor:"black"}}><Link to="/home" style={{ color: 'white', fontSize:'1.8rem'}}>Home</Link></Button>
+                        <Button variant="outline-light" style={{backgroundColor:"black"}}><Link to="/home" style={{ color: 'white', fontSize:'1.8rem'}}>Back</Link></Button>
                         </Col>
                     </Row>
                     <br/><br/>
@@ -372,7 +379,7 @@ function SearchItem (props) {
                
                     {Map(props.searchitem)}
                     </Row>
-                    <br/><br/><br/>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
                     <FadeTransform
                                     in
                                     transformProps={{
