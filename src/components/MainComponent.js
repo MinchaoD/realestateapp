@@ -8,7 +8,6 @@ import { HOUSEINFO } from '../shared/houseinfo';
 import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect} from 'react-router-dom';
-import NotFound from './NotFound';
 import { Link } from 'react-router-dom';
 
 class Main extends Component {
@@ -19,14 +18,16 @@ class Main extends Component {
             houseinfo: HOUSEINFO,
             city:"",
             state:"",
-            searchresults:[]
+            searchresults:[],
+            isloading: false
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
    
-    citySearch = () => {
+    citySearch = async () => {
+    this.setState({isloading: true})
     fetch(`https://us-real-estate.p.rapidapi.com/for-sale?offset=0&limit=200&state_code=${this.state.state}&city=${this.state.city}&sort=newest`, {
 	"method": "GET",
 	"headers": {
@@ -40,10 +41,10 @@ class Main extends Component {
     .then(data =>{
         this.setState({
             searchresults: data.data.results
-        }
-        );
-    },
-   )
+        });
+        this.setState({isloading: false})
+    })
+ 
     .catch(error => {
         const newError = new Error("Wrong City or State", error);
         throw newError
@@ -65,7 +66,7 @@ handleInputChange = (e) => {
     render() {
         const SearchResults =()=>{
             return (
-                <SearchList  searchresults={this.state.searchresults} city={this.state.city} state={this.state.state}/>
+                <SearchList  searchresults={this.state.searchresults} city={this.state.city} state={this.state.state} isloading={this.state.isloading}/>
                 
             )
         }
@@ -115,7 +116,6 @@ handleInputChange = (e) => {
                         <Route extact path={`/searchresults:${this.state.city}`} component={SearchResults} />
                         <Route path='/houselist:id' component={HouseId} /> 
                         <Route path='/searchresult:id' component={SearchId} /> 
-                        <Route path='/404' Component={NotFound} />
                         <Redirect to ='/home' />
                 </Switch>
                 <Footer />

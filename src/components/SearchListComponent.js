@@ -8,7 +8,6 @@ function RenderSearchList({searchresults}) {
     return (
        
             <div className ="row ">
-               
                 <div className = "col ">
                         <Card>
                             <Link to={`/searchresult${searchresults.property_id}`} >
@@ -42,8 +41,7 @@ function RenderSearchList({searchresults}) {
                         </Card>
                  
                 </div>
-            </div>
-        
+         </div>
     )
 }
 
@@ -78,8 +76,14 @@ function SearchList (props) {
         )
     })
 
+    if (props.isloading) {
         return (
-            <div className="container-fluid">
+        <div className="row justify-content-center">
+             <h1> Loading ... </h1>
+        </div>)
+    }
+        return (
+             <div className="container-fluid">
                 <div className="row">
                     <Row>
                     <Col className="mx-3">
@@ -87,7 +91,11 @@ function SearchList (props) {
                     </Col>
                     </Row>
                 </div>
-                <br/> 
+                <br/><br/>
+                <div className="row justify-content-center">
+                    <h1> Houses Found in {props.city}, {props.state}</h1>
+                </div>
+                <br/> <br/>
                 <div className="row">
                      {searchlist}
                      <ReactPaginate
