@@ -1,14 +1,15 @@
 import React, {Component} from 'react';
-import { Button, Form, FormGroup, Card, CardImg, Row, Label, Input, Col, FormFeedback  } from 'reactstrap';
+import { Button, Form, FormGroup, Card, CardImg, Row, Label, Input, Col, FormFeedback} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
 import { FadeTransform} from 'react-animation-components';
 import { GoogleMap, withScriptjs, Marker, withGoogleMap } from 'react-google-maps';
+// import { Player } from 'video-react';
 
  
 
 function RenderMainImage(searchitem) {
-    if(searchitem){
+    if(searchitem && (searchitem.photos.length>=5)){
  
         return(
             <div className = "container-fluid">
@@ -329,9 +330,11 @@ class Tour extends Component{
 
 
 function Map(searchitem){
+    if (searchitem.location.address.coordinate!==null){
     function showMap() {
 
-        if(searchitem){
+        if(searchitem ){
+           
             return (
     
             <GoogleMap
@@ -352,13 +355,32 @@ function Map(searchitem){
         mapElement={<div style={{height:'100%'}} />} />
       
     </div>
-  )
+  )}
+  return <div />
 }
 
+function Video(searchitem){
+    if(searchitem.virtual_tours!==null){
+        return (
+            <div>
+                <iframe src={searchitem.virtual_tours[0].href}
+                frameborder='0'
+                allow='autoplay; encrypted-media'
+                allowfullscreen
+                title='video'
+                width={950}
+                height={550}
+                />
+             
+            </div>
+
+        )
+    }
+    return <div />
+}
 
 function SearchItem (props) {
-    console.log("searchitem", props.searchitem)
-    if (props.searchitem){
+    if (props.searchitem ){
             return (
                 console.log("searchresult",props.searchitem),
                 <div className="container-fluid">
@@ -376,8 +398,13 @@ function SearchItem (props) {
                     {RenderDescription(props.searchitem)}
                     <br/><br/><br/>
                     <Row style={{justifyContent: "center"}}>
-               
                     {Map(props.searchitem)}
+                
+                    </Row>
+                    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    <Row style={{justifyContent: "center"}}>
+                  
+                    {Video(props.searchitem)}
                     </Row>
                     <br/><br/><br/><br/><br/><br/><br/><br/><br/>
                     <FadeTransform
@@ -391,7 +418,7 @@ function SearchItem (props) {
                 </div>
            )
         }
-        return <div />;
+        return <div/>
         }
 
 
