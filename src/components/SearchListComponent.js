@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, CardImg, CardTitle, CardText, CardBody, Row, Col, Button, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function RenderSearchList({searchresults}) {
    
@@ -25,13 +26,18 @@ function RenderSearchList({searchresults}) {
                                             <div className="col col-md-4 m-1" >
                                                 {searchresults.description.sqft} Sq.Ft.
                                             </div>
+                                            <div className = "col ">
+                                                <i class="fa fa-regular fa-heart-o fa-2x icon"  ></i>
+                                             </div>
                                         </div>
                                         <div className = "row">
-                                            <div className = "col">
+                                            <div className = "col col-md-10">
    
                                                 {`${searchresults.location.address.line}, ${searchresults.location.address.city}, ${searchresults.location.address.state}`}
                                             </div>
+                                            
                                         </div>
+
                                     </CardText>
                                 </CardBody>
                                 <CardFooter>
