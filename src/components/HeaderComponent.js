@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios"
-import baseUrl from '../shared/baseUrl'
+import {baseUrl} from '../shared/baseUrl'
 
 
 
