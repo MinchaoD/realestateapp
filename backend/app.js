@@ -1,8 +1,9 @@
-const express = require(express);
+const express = require('express');
 const createError = require('http-errors');
 const path = require('path');
 const passport = require('passport');
-
+const port = 3000;
+const hostname = "localhost";
 const userRouter = require('./routes/userRouter')
 const mongoose = require('mongoose');
 
@@ -18,9 +19,6 @@ connect.then(() => console.log('Connected correctly to server'),
 err => console.log(err))
 
 const app = express();
-
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -43,4 +41,4 @@ app.use(function(err, req, res, next) {
     res.render('error')
 });
 
-module.exports = app;
+app.listen(port, hostname);

@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { Jumbotron,  Button, Modal, ModalHeader, ModalBody,
-    Form, FormGroup, Input, Label } from 'reactstrap';
-import { FadeTransform} from 'react-animation-components'
+import axios from "axios"
+import baseUrl from '../shared/baseUrl'
+
+
 
 class Header extends Component {
     constructor(props) {
@@ -11,7 +12,10 @@ class Header extends Component {
         this.state = {
         
           isModalOpenLogin: false,
-          isModalOpenSignup: false
+          isModalOpenSignup: false,
+          username: "",
+          email: "",
+          password: ""
         };
 
     
@@ -26,7 +30,7 @@ class Header extends Component {
         alert(`Username: ${this.username.value} Password: ${this.password.value} Remember: ${this.remember.checked}`);
         this.toggleModalLogin();
         event.preventDefault();
-        return fetch(baseUrl + 'users/login', {
+        fetch(baseUrl + 'user/login', {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json' 
@@ -61,7 +65,7 @@ class Header extends Component {
         })
         .catch(error => dispatch(loginError(error.message)))
     };
-    }
+    
 
     handleSignup(event) {
         alert(`Username: ${this.username.value} Email: ${this.email.value} Password: ${this.password.value} terms: ${this.terms.checked}`);
