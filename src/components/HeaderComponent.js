@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import axios from "axios"
 import {baseUrl} from '../shared/baseUrl'
+import { Jumbotron,  Button, Modal, ModalHeader, ModalBody,
+    Form, FormGroup, Input, Label } from 'reactstrap';
+import { FadeTransform} from 'react-animation-components'
 
 
 
