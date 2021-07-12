@@ -26,6 +26,41 @@ class Header extends Component {
         alert(`Username: ${this.username.value} Password: ${this.password.value} Remember: ${this.remember.checked}`);
         this.toggleModalLogin();
         event.preventDefault();
+        return fetch(baseUrl + 'users/login', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify(creds)
+        })
+        .then(response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => { throw error; }
+        )
+        .then(response => response.json())
+        .then(response => {
+            if (response.success) {
+                // If login was successful, set the token in local storage
+                localStorage.setItem('token', response.token);
+                localStorage.setItem('creds', JSON.stringify(creds));
+                // Dispatch the success action
+                dispatch(fetchFavorites());
+                dispatch(receiveLogin(response));
+            } else {
+                const error = new Error('Error ' + response.status);
+                error.response = response;
+                throw error;
+            }
+        })
+        .catch(error => dispatch(loginError(error.message)))
+    };
     }
 
     handleSignup(event) {
