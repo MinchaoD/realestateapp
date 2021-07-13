@@ -9,7 +9,7 @@ class Header extends Component {
 
         
         this.state = {
-        
+         
           isModalOpenLogin: false,
           isModalOpenSignup: false
         };
@@ -66,7 +66,7 @@ class Header extends Component {
                             </FadeTransform>
                                
                             </div>
-                            <div className="col col-md-1 mx-5">
+                            <div className="col col-md-1 mx-4">
                                 <span >
                                     <Button outline size="lg" color="light" onClick={this.toggleModalSignup}>
                                       SignUp
@@ -79,7 +79,9 @@ class Header extends Component {
                                       LogIn
                                     </Button>
                                 </span>
+                                
                             </div>
+                           
                         </div>
                         
                     </div>

@@ -67,12 +67,16 @@ h2, h3, h5{
   color: white
 }
 
-
 .site-footer {
   background-image: linear-gradient(black, grey);
   padding: 150px 0 50px 0;
   color:white;
   
+}
+
+.iconbutton{
+  background-color: white;
+  border: none;
 }
 
 .icon{
