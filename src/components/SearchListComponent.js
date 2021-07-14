@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, CardImg, CardTitle, CardText, CardBody, Col, Button, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
+import ClipLoader from "react-spinners/ClipLoader";
  
 function RenderSearchList({searchresults}) {
 
@@ -85,9 +86,17 @@ function SearchList (props) {
 
     if (props.isloading) {
         return (
-        <div className="row justify-content-center">
-             <h1> Loading ... </h1>
-        </div>)
+        <div>
+            <div className="row justify-content-center">
+                <ClipLoader color="blue" size={150}/>
+                
+            </div>
+            <br/><br/> <br/>
+            <div className="row justify-content-center">
+                <h1> Loading ... </h1>
+            </div>
+        </div>
+        )
     }
         return (
              <div className="container-fluid">
@@ -116,8 +125,6 @@ function SearchList (props) {
                     pageCount={pageCount}
                     onPageChange={changePage}
                     containerClassName={"paginationBttns"}
-                    // previousLinkClassName={"previousBttn"}
-                    // nextLinkClassName={"nextBttn"}
                     disabledClassName={"paginationDisabled"}
                     activeClassName={"paginationActive"}
                 />

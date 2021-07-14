@@ -3,9 +3,6 @@ import { Card, CardImg, CardTitle, CardText, CardBody, CardFooter, CardDeck} fro
 import { Link } from 'react-router-dom';
 
 
-
-
-
 function RenderHouseList({houseinfo}) {
     return (
 

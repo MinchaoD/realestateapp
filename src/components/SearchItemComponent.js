@@ -4,9 +4,6 @@ import { Link } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
 import { FadeTransform} from 'react-animation-components';
 import { GoogleMap, withScriptjs, Marker, withGoogleMap } from 'react-google-maps';
-// import { Player } from 'video-react';
-
- 
 
 function RenderMainImage(searchitem) {
     if(searchitem && (searchitem.photos.length>=5)){
