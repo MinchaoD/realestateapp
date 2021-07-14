@@ -1,6 +1,7 @@
 const express = require('express');
 const createError = require('http-errors');
 const path = require('path');
+// const bodyParser = require('body-parser')
 const passport = require('passport');
 const port = 3000;
 const hostname = "localhost";
@@ -28,6 +29,7 @@ app.use(passport.initialize());
 app.use('/user', userRouter)
 
 app.use(express.static(path.join(_dirname, 'public')));
+// app.use(bodyParser.json())
 
 app.use(function(req,res,next) {
     next(createError(404));

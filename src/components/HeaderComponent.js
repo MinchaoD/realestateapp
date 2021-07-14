@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import axios from "axios"
 import {baseUrl} from '../shared/baseUrl'
 import { Jumbotron,  Button, Modal, ModalHeader, ModalBody,
     Form, FormGroup, Input, Label } from 'reactstrap';
@@ -29,16 +28,23 @@ class Header extends Component {
 
     }
 
-    handleLogin(event) {
-        alert(`Username: ${this.username.value} Password: ${this.password.value} Remember: ${this.remember.checked}`);
-        this.toggleModalLogin();
+    async handleLogin(event) {
+        // alert(`Username: ${this.username.value} Password: ${this.password.value} Remember: ${this.remember.checked}`);
+        
         event.preventDefault();
-        fetch(baseUrl + 'user/login', {
+        const username = `${this.username.value}`
+        const email = `${this.email.value}`
+        const password = `${this.password.value}`
+        const result = await fetch(baseUrl + 'user/login', {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json' 
             },
-            body: JSON.stringify(creds)
+            body: JSON.stringify({
+                username,
+                email,
+                password
+            })
         })
         .then(response => {
                 if (response.ok) {
@@ -56,24 +62,40 @@ class Header extends Component {
             if (response.success) {
                 // If login was successful, set the token in local storage
                 localStorage.setItem('token', response.token);
-                localStorage.setItem('creds', JSON.stringify(creds));
+                // localStorage.setItem('creds', JSON.stringify(creds));
                 // Dispatch the success action
-                dispatch(fetchFavorites());
-                dispatch(receiveLogin(response));
+                // dispatch(fetchFavorites());
+                // dispatch(receiveLogin(response));
             } else {
                 const error = new Error('Error ' + response.status);
                 error.response = response;
                 throw error;
             }
         })
-        .catch(error => dispatch(loginError(error.message)))
+        this.toggleModalLogin();
     };
     
 
-    handleSignup(event) {
-        alert(`Username: ${this.username.value} Email: ${this.email.value} Password: ${this.password.value} terms: ${this.terms.checked}`);
-        this.toggleModalSignup();
+    async handleSignup(event) {
+        // alert(`Username: ${this.username.value} Email: ${this.email.value} Password: ${this.password.value} terms: ${this.terms.checked}`);
         event.preventDefault();
+        const username = `${this.username.value}`
+        const email = `${this.email.value}`
+        const password = `${this.password.value}`
+        const result = await fetch(baseUrl + 'user/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password
+            })
+        }).then((response) => response.json())
+        console.log(result)
+
+        this.toggleModalSignup();
     }
      
     toggleModalLogin(event) {
