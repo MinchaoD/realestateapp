@@ -1,18 +1,16 @@
 import React, { useState } from "react";
-import { Card, CardImg, CardTitle, CardText, CardBody, Row, Col, Button, CardFooter} from 'reactstrap';
+import { Card, CardImg, CardTitle, CardText, CardBody, Col, Button, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
  
 function RenderSearchList({searchresults}) {
 
    const [favorite, setFavorite] = useState('false');
-
    function markFavorite () {
-       setFavorite(favorite=>!favorite)
-   }
-
+       setFavorite(favorite=>!favorite);
+    }
+                           
     return (
-       
             <div className ="row ">
                 <div className = "col ">
                         <Card>
@@ -39,8 +37,9 @@ function RenderSearchList({searchresults}) {
                                               
                                              </div>
                                         </div>
+                                        
                                         <div className = "row">
-                                            <div className = "col col-md-10">
+                                            <div className = "col">
    
                                                 {`${searchresults.location.address.line}, ${searchresults.location.address.city}, ${searchresults.location.address.state}`}
                                             </div>
@@ -58,13 +57,6 @@ function RenderSearchList({searchresults}) {
     )
 }
 
-const FavoriteId = (props) => {
-    if (props.favorite) {
-        return (
-        FavoriteId.push(props.searchresults.property_id))
-    }
-}
-
 function SearchList (props) {
     const [pageNumber, setPageNumber] = useState(0);
   
@@ -78,8 +70,8 @@ function SearchList (props) {
     };
    
     const searchlist = props.searchresults
-    .slice(pagesVisited, pagesVisited + usersPerPage)
     .filter(searchhouse => searchhouse.primary_photo !== null)  // filter out the ones without primary_photo, otherwise app will crash
+    .slice(pagesVisited, pagesVisited + usersPerPage)
     .map(searchhouse => {
         
         return (
@@ -104,13 +96,11 @@ function SearchList (props) {
                     <Col className="col-md-10 ml-3">
                     <Link to="/home"><Button color="outline-light" style={{fontSize:'3vh'}}> Home</Button></Link>
                     </Col>
-                    <Col className="col-md-1">
-                    <Link to={`/favoritelist`} >
-                    <Button outline size="lg" color="danger" style={{fontSize:'3vh'}} >
+                    {/* <Col className="col-md-1">
+                    <Button outline size="lg" color="danger" style={{fontSize:'3vh'}}>
                         Favorites
-                    </Button>
-                    </Link>
-                    </Col>
+                    </Button>                  
+                    </Col> */}
              
                 </div>
                 <br/><br/>
@@ -137,6 +127,6 @@ function SearchList (props) {
     }
 
 
-export {SearchList, FavoriteId};
+export default SearchList
 
 

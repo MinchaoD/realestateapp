@@ -1,9 +1,8 @@
 import React, { Component, Fragment  } from 'react';
 import HouseList from './HouseListComponent';
 import HouseItem from './HouseItemComponent';
-import {SearchList, FavoriteId} from './SearchListComponent';
+import SearchList from './SearchListComponent';
 import SearchItem from './SearchItemComponent';
-import FavoriteList from './FavoriteComponent';
 import { HOUSEDETAILS } from '../shared/housedetails';
 import { HOUSEINFO } from '../shared/houseinfo';
 import Header from './HeaderComponent';
@@ -26,7 +25,7 @@ class Main extends Component {
         };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.markFavorite = this.markFavorite.bind(this)
+     
     }
 
 
@@ -62,9 +61,6 @@ handleSubmit = (e) => {
   
 }
 
-markFavorite = () => {
-    this.setState({favorite: !this.state.favorite})
-    }
 
 handleInputChange = (e) => {
     this.setState({
@@ -79,23 +75,8 @@ handleInputChange = (e) => {
                 city={this.state.city} 
                 state={this.state.state} 
                 isloading={this.state.isloading} 
-                favorite={this.state.favorite}
-                markFavorite={this.markFavorite}
+              
               />
-            )
-        }
-
-        const Favoriteid = () => {
-            const favoriteItems = []
-            this.state.searchresults.forEach(function(item, index){
-                if(FavoriteId.includes(item.property_id)){
-                    favoriteItems.push(item)
-                }
-            })
-            return (
-                <FavoriteList  
-                    favoritelist={favoriteItems}
-                    />
             )
         }
 
@@ -146,7 +127,7 @@ handleInputChange = (e) => {
                     <Route extact path={`/searchresults:${this.state.city}`} component={SearchResults} />
                     <Route path='/houselist:id' component={HouseId} /> 
                     <Route path='/searchresult:id' component={SearchId} /> 
-                    <Route path='/favoritelist' component={Favoriteid} />
+                  
                     <Redirect to ='/home' />
             </Switch>
             <Footer />

@@ -1,10 +1,9 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import { Button, Form, FormGroup, Card, CardImg, Row, Label, Input, Col, FormFeedback  } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
-import { Fade, FadeTransform, Transform, Stagger } from 'react-animation-components';
+import { FadeTransform} from 'react-animation-components';
 import { GoogleMap, withScriptjs, Marker, withGoogleMap } from 'react-google-maps';
-import Geocode from 'react-geocode';
  
 
 function RenderMainImage(houseitem) {

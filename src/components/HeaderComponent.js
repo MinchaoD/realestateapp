@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Jumbotron,  Button, Modal, ModalHeader, ModalBody,
     Form, FormGroup, Input, Label } from 'reactstrap';
-import { FadeTransform} from 'react-animation-components'
+import { FadeTransform} from 'react-animation-components';
+
 
 class Header extends Component {
     constructor(props) {
@@ -61,10 +62,10 @@ class Header extends Component {
                                 transformProps={{
                                     exitTransform: 'scale(0.5) translateY(50%)'
                                 }}>
-
+                        
                                 <h1 style={{fontSize:'7vh'}}>Find Your Dream Home</h1>
+                            
                             </FadeTransform>
-                               
                             </div>
                             <div className="col col-md-1 mx-4">
                                 <span >
