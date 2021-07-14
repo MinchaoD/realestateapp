@@ -31,11 +31,11 @@ class Header extends Component {
     async handleLogin(event) {
         // alert(`Username: ${this.username.value} Password: ${this.password.value} Remember: ${this.remember.checked}`);
         
-        event.preventDefault();
+        this.toggleModalLogin();
         const username = `${this.username.value}`
         const email = `${this.email.value}`
         const password = `${this.password.value}`
-        const result = await fetch(baseUrl + 'user/login', {
+        const result = await fetch(baseUrl + '/user/login', {
             method: 'POST',
             headers: { 
                 'Content-Type': 'application/json' 
@@ -62,27 +62,23 @@ class Header extends Component {
             if (response.success) {
                 // If login was successful, set the token in local storage
                 localStorage.setItem('token', response.token);
-                // localStorage.setItem('creds', JSON.stringify(creds));
-                // Dispatch the success action
-                // dispatch(fetchFavorites());
-                // dispatch(receiveLogin(response));
+             
             } else {
                 const error = new Error('Error ' + response.status);
                 error.response = response;
                 throw error;
             }
         })
-        this.toggleModalLogin();
+
     };
     
 
     async handleSignup(event) {
-        // alert(`Username: ${this.username.value} Email: ${this.email.value} Password: ${this.password.value} terms: ${this.terms.checked}`);
-        event.preventDefault();
+        this.toggleModalSignup();
         const username = `${this.username.value}`
         const email = `${this.email.value}`
         const password = `${this.password.value}`
-        const result = await fetch(baseUrl + 'user/signup', {
+        const result = await fetch(baseUrl + '/user/signup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -93,9 +89,9 @@ class Header extends Component {
                 password
             })
         }).then((response) => response.json())
-        console.log(result)
-
-        this.toggleModalSignup();
+        
+        console.log("zz",result)
+      
     }
      
     toggleModalLogin(event) {
