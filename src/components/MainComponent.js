@@ -34,7 +34,7 @@ class Main extends Component {
     fetch(`https://us-real-estate.p.rapidapi.com/for-sale?offset=0&limit=200&state_code=${this.state.state}&city=${this.state.city}&sort=newest`, {
 	"method": "GET",
 	"headers": {
-		"x-rapidapi-key": "90c32ee4dfmsh4fb639c105f3c53p17b70ejsn4202beb6b2c8",
+		"x-rapidapi-key": `${process.env.REACT_APP_REAL_ESTATE_API_KEY}`,
 		"x-rapidapi-host": "us-real-estate.p.rapidapi.com"
 	}
     })
