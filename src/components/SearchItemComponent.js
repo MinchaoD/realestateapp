@@ -173,32 +173,32 @@ class Tour extends Component{
 
         if (this.state.touched.firstName) {
             if (firstName.length < 2) {
-                errors.firstName = 'First name must be at least 2 characters.';
+                errors.firstName = <h5 style={{color: 'red'}} > First name must be at least 2 characters.</h5>;
             } else if (firstName.length > 15) {
-                errors.firstName = 'First name must be 15 or less characters.';
+                errors.firstName = <h5 style={{color: 'red'}} > First name must be 15 or less characters.</h5>;
             }
         }
 
         if (this.state.touched.lastName) {
             if (lastName.length < 2) {
-                errors.lastName = 'Last name must be at least 2 characters.';
+                errors.lastName = <h5 style={{color: 'red'}} > Last name must be at least 2 characters.</h5>;
             } else if (lastName.length > 15) {
-                errors.lastName = 'Last name must be 15 or less characters.';
+                errors.lastName = <h5 style={{color: 'red'}} > Last name must be 15 or less characters.</h5>;
             }
         }
 
         const reg = /^\d+$/;
         if (this.state.touched.phoneNum && !reg.test(phoneNum)) {
-            errors.phoneNum = 'The phone number should contain only numbers.';
+            errors.phoneNum = <h5 style={{color: 'red'}} > The phone number should contain only numbers.</h5>;
         }
 
         if (this.state.touched.email && !email.includes('@')) {
-            errors.email = 'Email should contain a @';
+            errors.email = <h5 style={{color: 'red'}} > Email should contain a @</h5>;
         }
 
         if (this.state.touched.date) {
             if (date <  new Date() ){
-                errors.date = "Please pick a future date.";
+                errors.date = <h5 style={{color: 'red'}} > Please pick a future date.</h5>;
             }
         }
 

@@ -1,18 +1,23 @@
 import React, { useState } from "react";
-import { Card, CardImg, CardTitle, CardText, CardBody, Row, Col, Button, CardFooter} from 'reactstrap';
+import { Card, CardImg, CardTitle, CardText, CardBody, Col, Button, CardFooter} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import ReactPaginate from "react-paginate";
-import ClipLoader from 'react-spinners/ClipLoader'
-
+import ClipLoader from "react-spinners/ClipLoader";
+ 
 function RenderSearchList({searchresults}) {
-   
+
+   const [favorite, setFavorite] = useState('false');
+   function markFavorite () {
+       setFavorite(favorite=>!favorite);
+    }
+                           
     return (
-       
             <div className ="row ">
                 <div className = "col ">
                         <Card>
                             <Link to={`/searchresult${searchresults.property_id}`} >
-                                <CardImg  height="400" src={searchresults.primary_photo.href}/>
+                                <CardImg  height="400" src={searchresults.primary_photo.href} />
+                            </Link>
                                 <CardBody className="cardinfo" >
                                     <CardTitle> $ {searchresults.list_price}</CardTitle> 
                                     <CardText>
@@ -23,40 +28,41 @@ function RenderSearchList({searchresults}) {
                                             <div className="col col-md-3 m-1" >
                                                 {searchresults.description.baths} baths
                                             </div>
-                                            <div className="col col-md-4 m-1" >
+                                            <div className="col col-md-3 m-1" >
                                                 {searchresults.description.sqft} Sq.Ft.
                                             </div>
+                                            <div className = "col ">
+                                                <button className = "iconbutton" onClick =  {markFavorite} >
+                                                {favorite ? <i class="fa fa-regular fa-heart-o fa-2x icon"  ></i>: <i class="fa fa-regular fa-heart fa-2x icon"  ></i>}
+                                                </button>
+                                              
+                                             </div>
                                         </div>
+                                        
                                         <div className = "row">
                                             <div className = "col">
    
                                                 {`${searchresults.location.address.line}, ${searchresults.location.address.city}, ${searchresults.location.address.state}`}
                                             </div>
+                                            
                                         </div>
+
                                     </CardText>
                                 </CardBody>
                                 <CardFooter>
                                     <big className="text-muted">Listing provided by {searchresults.source.type}</big>
                                 </CardFooter>
-                            </Link>
                         </Card>
-                 
                 </div>
          </div>
     )
 }
 
-
-   
-
 function SearchList (props) {
-    
     const [pageNumber, setPageNumber] = useState(0);
   
     const usersPerPage = 12;
     const pagesVisited = pageNumber * usersPerPage;
-  
-  
   
     const pageCount = Math.ceil(props.searchresults.length / usersPerPage);
   
@@ -65,14 +71,14 @@ function SearchList (props) {
     };
    
     const searchlist = props.searchresults
-   
     .filter(searchhouse => searchhouse.primary_photo !== null)  // filter out the ones without primary_photo, otherwise app will crash
     .slice(pagesVisited, pagesVisited + usersPerPage)
     .map(searchhouse => {
         
         return (
             <div key = {searchhouse.property_id} className = "col-md-4 m-3 mx-auto">
-                <RenderSearchList searchresults={searchhouse} />
+                <RenderSearchList searchresults={searchhouse} 
+               />
                
             </div>
         )
@@ -95,11 +101,16 @@ function SearchList (props) {
         return (
              <div className="container-fluid">
                 <div className="row">
-                    <Row>
-                    <Col className="mx-3">
+               
+                    <Col className="col-md-10 ml-3">
                     <Link to="/home"><Button color="outline-light" style={{fontSize:'3vh'}}> Home</Button></Link>
                     </Col>
-                    </Row>
+                    {/* <Col className="col-md-1">
+                    <Button outline size="lg" color="danger" style={{fontSize:'3vh'}}>
+                        Favorites
+                    </Button>                  
+                    </Col> */}
+             
                 </div>
                 <br/><br/>
                 <div className="row justify-content-center">
@@ -123,8 +134,6 @@ function SearchList (props) {
     }
 
 
-export default SearchList;
+export default SearchList
 
 
-
- 
