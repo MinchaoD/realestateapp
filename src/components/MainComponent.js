@@ -58,7 +58,7 @@ handleSubmit = (e) => {
     e.preventDefault();
     
     this.citySearch();
-    this.setState({minprice:"", maxprice:""})
+    this.setState({pricemin:"", pricemax:""})
   
 }
 

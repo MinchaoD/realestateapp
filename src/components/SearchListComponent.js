@@ -114,7 +114,7 @@ function SearchList (props) {
                 </div>
                 <br/><br/>
                 <div className="row justify-content-center">
-                    <h1> Houses Found in {props.city}, {props.state}</h1>
+                    <h1> Properties Found in {props.city}, {props.state}</h1>
                 </div>
                 <br/> <br/>
                 <div className="row">
