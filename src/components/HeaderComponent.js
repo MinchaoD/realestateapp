@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
+import {baseUrl} from '../shared/baseUrl'
 import { Jumbotron,  Button, Modal, ModalHeader, ModalBody,
     Form, FormGroup, Input, Label } from 'reactstrap';
 import { FadeTransform} from 'react-animation-components';
+
+
 
 
 class Header extends Component {
@@ -12,7 +15,10 @@ class Header extends Component {
         this.state = {
          
           isModalOpenLogin: false,
-          isModalOpenSignup: false
+          isModalOpenSignup: false,
+          username: "",
+          email: "",
+          password: ""
         };
 
     
@@ -23,16 +29,70 @@ class Header extends Component {
 
     }
 
-    handleLogin(event) {
-        alert(`Username: ${this.username.value} Password: ${this.password.value} Remember: ${this.remember.checked}`);
+    async handleLogin(event) {
+        // alert(`Username: ${this.username.value} Password: ${this.password.value} Remember: ${this.remember.checked}`);
+        
         this.toggleModalLogin();
-        event.preventDefault();
-    }
+        const username = `${this.username.value}`
+        const email = `${this.email.value}`
+        const password = `${this.password.value}`
+        const result = await fetch(baseUrl + '/user/login', {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json' 
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password
+            })
+        })
+        .then(response => {
+                if (response.ok) {
+                    return response;
+                } else {
+                    const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                    error.response = response;
+                    throw error;
+                }
+            },
+            error => { throw error; }
+        )
+        .then(response => response.json())
+        .then(response => {
+            if (response.success) {
+                // If login was successful, set the token in local storage
+                localStorage.setItem('token', response.token);
+             
+            } else {
+                const error = new Error('Error ' + response.status);
+                error.response = response;
+                throw error;
+            }
+        })
 
-    handleSignup(event) {
-        alert(`Username: ${this.username.value} Email: ${this.email.value} Password: ${this.password.value} terms: ${this.terms.checked}`);
+    };
+    
+
+    async handleSignup(event) {
         this.toggleModalSignup();
-        event.preventDefault();
+        const username = `${this.username.value}`
+        const email = `${this.email.value}`
+        const password = `${this.password.value}`
+        const result = await fetch(baseUrl + '/user/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username,
+                email,
+                password
+            })
+        }).then((response) => response.json())
+        
+        console.log("zz",result)
+      
     }
      
     toggleModalLogin(event) {

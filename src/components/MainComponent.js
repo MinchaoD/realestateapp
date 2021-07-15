@@ -9,6 +9,7 @@ import Header from './HeaderComponent';
 import Footer from './FooterComponent';
 import { Switch, Route, Redirect} from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { Row} from 'reactstrap';
 
 class Main extends Component {
     constructor(props) {
@@ -18,6 +19,8 @@ class Main extends Component {
             houseinfo: HOUSEINFO,
             city:"",
             state:"",
+            pricemin:"",
+            pricemax:"",
             searchresults:[],
             isloading: false,
             favorite: false,
@@ -31,7 +34,7 @@ class Main extends Component {
 
     citySearch = async () => {
     this.setState({isloading: true})
-    fetch(`https://us-real-estate.p.rapidapi.com/for-sale?offset=0&limit=200&state_code=${this.state.state}&city=${this.state.city}&sort=newest`, {
+    fetch(`https://us-real-estate.p.rapidapi.com/for-sale?offset=0&limit=200&state_code=${this.state.state}&city=${this.state.city}&sort=newest&price_min=${this.state.pricemin}&price_max=${this.state.pricemax}`, {
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-key": `${process.env.REACT_APP_REAL_ESTATE_API_KEY}`,
@@ -58,6 +61,7 @@ handleSubmit = (e) => {
     e.preventDefault();
     
     this.citySearch();
+    this.setState({pricemin:"", pricemax:""})
   
 }
 
@@ -97,42 +101,72 @@ handleInputChange = (e) => {
                 return (
                     <SearchItem 
                         searchitem = {singlelist[0]}
-                        city={this.state.city}
-                       />  // need [0] to get the content of the data
-                    )}
-
-        return (
-        <div className="container-fluid">
-            <Header />
-            <Switch>
-                    <Route path='/home' render={() => 
-                    <Fragment>  
-                        <div style={{display: 'flex', fontSize:"3vh", justifyContent:'center', alignItems:'center'}}>
-                            <label for="site-search"><span>City:&nbsp;&nbsp;</span></label>
-                            <input type="search" id="city" name="city"
-                                onChange={this.handleInputChange} />
-                            <span>&nbsp;&nbsp;</span>
-                            <label for="site-search"><span>State:&nbsp;&nbsp;</span></label>
-                            <input type="search" id="state" name="state"
-                                onChange={this.handleInputChange} />
-                            <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            <button type="submit" class="btn btn-outline-light btn-lg" style={{fontSize: '4vh'}} onClick={this.handleSubmit} ><Link to={`/searchresults${this.state.city}`}>Search</Link></button>
-                        </div>
-                        <br/><br/><br/>
-                        
-                        <HouseList houseinfo={this.state.houseinfo} />
-                        
-                    </Fragment> }/> 
-                    {/* // above code is to render searchlist and houselist 2 components on the same home page */}
-                    <Route extact path={`/searchresults:${this.state.city}`} component={SearchResults} />
-                    <Route path='/houselist:id' component={HouseId} /> 
-                    <Route path='/searchresult:id' component={SearchId} /> 
-                  
-                    <Redirect to ='/home' />
-            </Switch>
-            <Footer />
-            
-        </div>
+                        city={this.state.city}/>  // need [0] to get the content of the data
+                        )}
+            return (
+            <div className="container-fluid">
+                <Header />
+                <Switch>
+                        <Route path='/home' render={() => 
+                        <Fragment>  
+                            <div style={{fontSize:"3vh"}} className="ml-5">
+                                <Row>
+                                    <div className='col col-md-1 ml-5'>
+                                        <label for="site-search" >City:</label>
+                                    </div>
+                                    <div className='col col-md-4 mx-auto'>
+                                        <input type="search" id="city"  name="city"
+                                            onChange={this.handleInputChange} />
+                                    </div>
+                                    <span>&nbsp;&nbsp;</span>
+                                    <div className='col col-md-1 '>
+                                        <label for="site-search">State:</label>
+                                    </div>
+                                    <div className='col col-md-4 mx-auto'>
+                                        <input type="search" id="state" name="state"
+                                            onChange={this.handleInputChange} />
+                                    </div>
+                                </Row>
+                                <br/>
+                                <Row>
+                                    <div className='col col-md-1 ml-5'> 
+                                        <label for="site-search" ><span>Min Price:</span></label>
+                                    </div>
+                                    <div className='col col-md-4 mx-auto'>
+                                        <input type="search" id="pricemin"  name="pricemin"
+                                            onChange={this.handleInputChange} />
+                                    </div>
+                                    <span>&nbsp;&nbsp;</span>
+                                    <div className='col col-md-1 '>
+                                        <label for="site-search" >Max Price:</label>
+                                    </div>
+                                    <div className='col col-md-4 mx-auto'>
+                                        <input type="search" id="pricemax" name="pricemax"
+                                            onChange={this.handleInputChange} />
+                                    </div>
+                                </Row>
+                                <br/><br/>
+                                <Row>
+                                    <div className='col col-md-3 mx-auto'>
+                                        <button type="submit" class="btn btn-outline-light btn-lg btn-block" style={{fontSize: '4vh'}} onClick={this.handleSubmit} ><Link to={`/searchresults${this.state.city}`}>Search</Link></button>
+                                    </div>
+                                </Row>
+                               
+                            </div>
+                            <br/><br/><br/>  <br/><br/><br/>
+                            
+                            <HouseList houseinfo={this.state.houseinfo} />
+                            
+                        </Fragment> }/> 
+                        {/* // above code is to render searchlist and houselist 2 components on the same home page */}
+                        <Route extact path={`/searchresults:${this.state.city}`} component={SearchResults} />
+                        <Route path='/houselist:id' component={HouseId} /> 
+                        <Route path='/searchresult:id' component={SearchId} /> 
+                        <Redirect to ='/home' />
+                </Switch>
+                <Footer />
+                
+            </div>
         )
     }
 }

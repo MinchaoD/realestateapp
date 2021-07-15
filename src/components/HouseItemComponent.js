@@ -2,9 +2,8 @@ import React, {Component} from 'react';
 import { Button, Form, FormGroup, Card, CardImg, Row, Label, Input, Col, FormFeedback  } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
-import { FadeTransform} from 'react-animation-components';
+import {FadeTransform} from 'react-animation-components';
 import { GoogleMap, withScriptjs, Marker, withGoogleMap } from 'react-google-maps';
- 
 
 function RenderMainImage(houseitem) {
     if(houseitem){
@@ -49,7 +48,6 @@ function RenderMainImage(houseitem) {
                         </Col>  
                     </Row> 
                 </Zoom>
-
             </div>
         )
     }
