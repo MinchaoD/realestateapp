@@ -1,11 +1,9 @@
-import React, {Component, useState} from 'react';
+import React, {Component} from 'react';
 import { Button, Form, FormGroup, Card, CardImg, Row, Label, Input, Col, FormFeedback  } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import Zoom from 'react-reveal/Zoom';
-import { Fade, FadeTransform, Transform, Stagger } from 'react-animation-components';
+import {FadeTransform} from 'react-animation-components';
 import { GoogleMap, withScriptjs, Marker, withGoogleMap } from 'react-google-maps';
-import Geocode from 'react-geocode';
- 
 
 function RenderMainImage(houseitem) {
     if(houseitem){
@@ -50,7 +48,6 @@ function RenderMainImage(houseitem) {
                         </Col>  
                     </Row> 
                 </Zoom>
-
             </div>
         )
     }
@@ -345,7 +342,7 @@ function Map(houseinfo){
   return (
     <div style = {{ width: '50vw', height: '50vh'}}>
     <WrappedMap
-        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyBnNrwpsObb8AcBsyU2nUCKL3CZpSlCgK8`}
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_KEY}`}
         loadingElement={<div style={{height: '100%'}}/>}
         containerElement={<div style={{ height: '100%'}}/>}
         mapElement={<div style={{height:'100%'}} />} />

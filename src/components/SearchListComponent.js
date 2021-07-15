@@ -65,8 +65,9 @@ function SearchList (props) {
     };
    
     const searchlist = props.searchresults
-    .slice(pagesVisited, pagesVisited + usersPerPage)
+   
     .filter(searchhouse => searchhouse.primary_photo !== null)  // filter out the ones without primary_photo, otherwise app will crash
+    .slice(pagesVisited, pagesVisited + usersPerPage)
     .map(searchhouse => {
         
         return (
@@ -113,8 +114,6 @@ function SearchList (props) {
                     pageCount={pageCount}
                     onPageChange={changePage}
                     containerClassName={"paginationBttns"}
-                    // previousLinkClassName={"previousBttn"}
-                    // nextLinkClassName={"nextBttn"}
                     disabledClassName={"paginationDisabled"}
                     activeClassName={"paginationActive"}
                 />
