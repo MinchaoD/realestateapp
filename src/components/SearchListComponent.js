@@ -19,7 +19,18 @@ function RenderSearchList({searchresults}) {
                                 <CardImg  height="400" src={searchresults.primary_photo.href} />
                             </Link>
                                 <CardBody className="cardinfo" >
-                                    <CardTitle> $ {searchresults.list_price}</CardTitle> 
+                                    <CardTitle> 
+                                        <div className = "row">
+                                            <div className = "col-md-10">
+                                                $ {searchresults.list_price}
+                                            </div>
+                                            <div className = "col-md-2 ">
+                                                    <button className = "iconbutton" onClick = {markFavorite}>
+                                                    {favorite ? <i class="fa fa-regular fa-heart-o fa-x icon"  ></i>: <i class="fa fa-regular fa-heart fa-x icon"  ></i>}
+                                                    </button>
+                                            </div>
+                                        </div>
+                                    </CardTitle> 
                                     <CardText>
                                         <div className = "row">
                                             <div className="col col-md-3 m-1" >
@@ -28,15 +39,10 @@ function RenderSearchList({searchresults}) {
                                             <div className="col col-md-3 m-1" >
                                                 {searchresults.description.baths} baths
                                             </div>
-                                            <div className="col col-md-3 m-1" >
+                                            <div className="col col-md-4 " >
                                                 {searchresults.description.sqft} Sq.Ft.
                                             </div>
-                                            <div className = "col ">
-                                                <button className = "iconbutton" onClick =  {markFavorite} >
-                                                {favorite ? <i class="fa fa-regular fa-heart-o fa-2x icon"  ></i>: <i class="fa fa-regular fa-heart fa-2x icon"  ></i>}
-                                                </button>
-                                              
-                                             </div>
+                                            
                                         </div>
                                         
                                         <div className = "row">
