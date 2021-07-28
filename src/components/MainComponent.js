@@ -95,7 +95,7 @@ handleInputChange = (e) => {
         const SearchId = ({match}) => {
             const singlelist =[]
             this.state.searchresults.forEach(function(item, index){   // use foreach to loop all the lists and find the one match with the id
-                    if(+match.params.id == item.property_id){
+                    if(+match.params.id === item.property_id){
                     singlelist.push(item)
                     }})
                 return (
