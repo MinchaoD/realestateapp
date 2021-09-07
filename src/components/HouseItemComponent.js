@@ -309,8 +309,9 @@ class Tour extends Component{
                                         value={this.state.notes}
                                         onChange={this.handleInputChange}></Input>
                                 </Col>
-                                <Col className="align-self-end" align="center">
-                                    <Button type="submit" size="lg" color="success" style={{fontSize: '3vh'}}>
+ 
+                                <Col className="align-self-end" align="center" >
+                                    <Button type="submit" size="lg" color="success" style={{fontSize: '3vh' }}>
                                         Schedule Tour
                                     </Button>
                                 </Col>

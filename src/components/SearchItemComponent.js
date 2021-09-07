@@ -16,7 +16,7 @@ function RenderMainImage(searchitem) {
                     <Row >
                         <Col md={8}>               
                             <Card>                       
-                                <CardImg  height="820" src={searchitem.primary_photo.href}/>                           
+                                <CardImg height="820"  src={searchitem.primary_photo.href}/>                           
                             </Card>
                         </Col>
                         <Col md={4} >

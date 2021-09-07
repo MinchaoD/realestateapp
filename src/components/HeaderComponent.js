@@ -123,20 +123,20 @@ class Header extends Component {
                                     exitTransform: 'scale(0.5) translateY(50%)'
                                 }}>
                         
-                                <h1 style={{fontSize:'7vh'}}>Find Your Dream Home</h1>
+                                <h1 style={{fontSize:'6vh'}}>Find Your Dream Home</h1>
                             
                             </FadeTransform>
                             </div>
-                            <div className="col col-md-1 mx-4">
+                            <div className="col-sx-4 col-md-1 mx-auto">
                                 <span >
-                                    <Button outline size="lg" color="light" onClick={this.toggleModalSignup}>
+                                    <Button outline size="lg" className='custom' color="light" onClick={this.toggleModalSignup}>
                                       SignUp
                                     </Button>
                                 </span>
                             </div>
-                            <div className="col col-md-1">
+                            <div className="col-sx-4 col-md-1">
                                 <span >
-                                    <Button outline size="lg" color="light" onClick={this.toggleModalLogin}>
+                                    <Button outline size="lg" className='custom' color="light" onClick={this.toggleModalLogin}>
                                       LogIn
                                     </Button>
                                 </span>

@@ -112,36 +112,36 @@ handleInputChange = (e) => {
                         <Fragment>  
                             <div style={{fontSize:"3vh"}} className="ml-5">
                                 <Row>
-                                    <div className='col col-md-1 ml-5'>
+                                    <div className='col-xs-6 col-md-1 mx-auto'>
                                         <label for="site-search" >City:</label>
                                     </div>
-                                    <div className='col col-md-4 mx-auto'>
+                                    <div className='col-xs-6 col-md-4 mx-auto'>
                                         <input type="search" id="city"  name="city"
                                             onChange={this.handleInputChange} />
                                     </div>
                                     <span>&nbsp;&nbsp;</span>
-                                    <div className='col col-md-1 '>
+                                    <div className='col-xs-6 col-md-1 mx-auto'>
                                         <label for="site-search">State:</label>
                                     </div>
-                                    <div className='col col-md-4 mx-auto'>
+                                    <div className='col-xs-6 col-md-4 mx-auto'>
                                         <input type="search" id="state" name="state"
                                             onChange={this.handleInputChange} />
                                     </div>
                                 </Row>
                                 <br/>
                                 <Row>
-                                    <div className='col col-md-1 ml-5'> 
+                                    <div className='col-xs-6 col-md-1 mx-auto'> 
                                         <label for="site-search" ><span>Min Price:</span></label>
                                     </div>
-                                    <div className='col col-md-4 mx-auto'>
+                                    <div className='col-xs-6 col-md-4 mx-auto'>
                                         <input type="search" id="pricemin"  name="pricemin"
                                             onChange={this.handleInputChange} />
                                     </div>
                                     <span>&nbsp;&nbsp;</span>
-                                    <div className='col col-md-1 '>
+                                    <div className='col-xs-6 col-md-1 mx-auto'>
                                         <label for="site-search" >Max Price:</label>
                                     </div>
-                                    <div className='col col-md-4 mx-auto'>
+                                    <div className='col-xs-6 col-md-4 mx-auto'>
                                         <input type="search" id="pricemax" name="pricemax"
                                             onChange={this.handleInputChange} />
                                     </div>
