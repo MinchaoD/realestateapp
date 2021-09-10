@@ -127,14 +127,14 @@ class Header extends Component {
                             
                             </FadeTransform>
                             </div>
-                            <div className="col-sx-4 col-md-1 mx-auto">
+                            <div className="col-md-1 mx-auto">
                                 <span >
                                     <Button outline size="lg" className='custom' color="light" onClick={this.toggleModalSignup}>
                                       SignUp
                                     </Button>
                                 </span>
                             </div>
-                            <div className="col-sx-4 col-md-1">
+                            <div className=" col-md-1 mx-auto">
                                 <span >
                                     <Button outline size="lg" className='custom' color="light" onClick={this.toggleModalLogin}>
                                       LogIn

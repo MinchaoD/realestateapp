@@ -239,7 +239,7 @@ class Tour extends Component{
                     <div >
                         <Form onSubmit={this.handleSubmit} >
                         <FormGroup row>
-                                <Label htmlFor="firstName" md={2} align="right"><h4>First Name</h4></Label>
+                                <Label htmlFor="firstName" md={2} className='text-md-right'><h4>First Name</h4></Label>
                                 <Col md={4}>
                                     <Input type="text" id="firstName" name="firstName"
                                         placeholder="First Name"
@@ -250,7 +250,7 @@ class Tour extends Component{
                                     <FormFeedback>{errors.firstName}</FormFeedback>
                                 </Col>
                           
-                                    <Label htmlFor="lastName" md={2} align="right"><h4>Last Name</h4></Label>
+                                    <Label htmlFor="lastName" md={2} className='text-md-right'><h4>Last Name</h4></Label>
                             
                                 <Col md={4}>
                                     <Input type="text" id="lastName" name="lastName"
@@ -264,7 +264,7 @@ class Tour extends Component{
                             </FormGroup>
                           
                             <FormGroup row>
-                                <Label htmlFor="phoneNum" md={2} align="right"><h4>Phone</h4></Label>
+                                <Label htmlFor="phoneNum" md={2} className='text-md-right'><h4>Phone</h4></Label>
                                 <Col md={4}>
                                     <Input type="tel" id="phoneNum" name="phoneNum"
                                         placeholder="Phone number"
@@ -274,7 +274,7 @@ class Tour extends Component{
                                         onChange={this.handleInputChange} />
                                     <FormFeedback>{errors.phoneNum}</FormFeedback>
                                 </Col>
-                                <Label htmlFor="email" md={2} align="right"><h4>Email</h4></Label>
+                                <Label htmlFor="email" md={2} className='text-md-right'><h4>Email</h4></Label>
                                 <Col md={4}>
                                     <Input type="email" id="email" name="email"
                                         placeholder="Email"
@@ -287,7 +287,7 @@ class Tour extends Component{
                             </FormGroup>
                           
                             <FormGroup row>
-                                <Label htmlFor="date" md={2} align="right"><h4>Date</h4></Label>
+                                <Label htmlFor="date" md={2} className='text-md-right'><h4>Date</h4></Label>
                                     <Col md={4}>
                                         <Input type="date" id="date" name="date" placeholder="mm/dd/yyyy"
                                         value={this.state.date}
@@ -296,7 +296,7 @@ class Tour extends Component{
                                         onChange={this.handleInputChange}/>
                                         <FormFeedback>{errors.date}</FormFeedback>
                                     </Col>
-                                    <Label htmlFor="time" md={2} align="right"><h4>Time</h4></Label>
+                                    <Label htmlFor="time" md={2} className='text-md-right'><h4>Time</h4></Label>
                                     <Col md={4}>
                                         <Input type="time" id="time" name="time"
                                         value={this.state.time}                                      
@@ -305,7 +305,7 @@ class Tour extends Component{
                             </FormGroup>
                         
                             <FormGroup row>
-                                <Label htmlFor="notes" md={2} align="right"><h4>Notes (Optional)</h4></Label>
+                                <Label htmlFor="notes" md={2} className='text-md-right'><h4>Notes (Optional)</h4></Label>
                                 <Col md={4}>
                                     <Input type="textarea" id="notes" name="notes"
                                         rows="6"
@@ -313,7 +313,7 @@ class Tour extends Component{
                                         onChange={this.handleInputChange}></Input>
                                 </Col>
                                 <Col className="align-self-end" align="center">
-                                    <Button type="submit" size="lg" color="success" style={{fontSize: '3vh'}}>
+                                    <Button type="submit" size="lg" color="success" style={{fontSize: '3vh', margin:30}}>
                                         Schedule Tour
                                     </Button>
                                 </Col>
@@ -383,29 +383,32 @@ function SearchItem (props) {
             return (
                 console.log("searchresult",props.searchitem),
                 <div className="container-fluid">
-                    
+                   
                     <Row>
                         <Col className="mx-3">
                         <Link to={`/searchresults${props.city}`}><Button color="outline-light" style={{fontSize:'3vh'}}> Back to Search Results</Button></Link>
                         </Col>
                     </Row>
-                    <br/><br/>
+                  
+                    <div className='mt-5 mb-5 d-none d-md-block'>
                     {RenderMainImage(props.searchitem)}
-                    <br/><br/>
+                   
+                    </div>
+                    <div  className='mt-5 mb-5'>
                     {RenderInfo(props.searchitem)}
                 
                     {RenderDescription(props.searchitem)}
-                    <br/><br/><br/>
-                    <Row style={{justifyContent: "center"}}>
+                    </div>
+                   
+                    <div style={{padding:30}} className='mt-5 mb-5' align='center' >
                     {Map(props.searchitem)}
                 
-                    </Row>
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    <Row style={{justifyContent: "center"}}>
+                    </div>
+                    <div style={{padding:30}} className='mt-5 mb-5' align='center' >
                   
                     {Video(props.searchitem)}
-                    </Row>
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+                    </div>
+                    <div style={{padding:30}}>
                     <FadeTransform
                                     in
                                     transformProps={{
@@ -414,6 +417,7 @@ function SearchItem (props) {
 
                         <Tour/>
                     </FadeTransform>
+                    </div>
                 </div>
            )
         }

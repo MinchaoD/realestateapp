@@ -125,7 +125,7 @@ function RenderDescription(houseitem) {
                 <Row>
                     <Col>
                      
-                        <h4>{houseitem.description}</h4>
+                        <h5>{houseitem.description}</h5>
                     </Col>
                 </Row>
             </div>
@@ -236,7 +236,7 @@ class Tour extends Component{
                     <div >
                         <Form onSubmit={this.handleSubmit} >
                         <FormGroup row>
-                                <Label htmlFor="firstName" md={2} align="right" ><h4>First Name</h4></Label>
+                                <Label htmlFor="firstName" md={2} className='text-md-right'><h4>First Name</h4></Label>
                                 <Col md={3}>
                                     <Input type="text" id="firstName" name="firstName"
                                         placeholder="First Name"
@@ -247,8 +247,8 @@ class Tour extends Component{
                                     <FormFeedback>{errors.firstName}</FormFeedback>
                                 </Col>
                           
-                                    <Label htmlFor="lastName" md={2} align="right"><h4>Last Name</h4></Label>
-                            
+                                    <Label htmlFor="lastName" md={2} className='text-md-right'><h4>Last Name</h4></Label>
+                             {/* here md-align so only screen bigger than md will align right, the smaller screen is still align left */}
                                 <Col md={3}>
                                     <Input type="text" id="lastName" name="lastName"
                                         placeholder="Last Name"
@@ -261,7 +261,7 @@ class Tour extends Component{
                             </FormGroup>
                           
                             <FormGroup row>
-                                <Label htmlFor="phoneNum" md={2} align="right"><h4>Phone</h4></Label>
+                                <Label htmlFor="phoneNum" md={2} className='text-md-right'><h4>Phone</h4></Label>
                                 <Col md={3}>
                                     <Input type="tel" id="phoneNum" name="phoneNum"
                                         placeholder="Phone number"
@@ -271,7 +271,7 @@ class Tour extends Component{
                                         onChange={this.handleInputChange} />
                                     <FormFeedback>{errors.phoneNum}</FormFeedback>
                                 </Col>
-                                <Label htmlFor="email" md={2} align="right"><h4>Email</h4></Label>
+                                <Label htmlFor="email" md={2} className='text-md-right'><h4>Email</h4></Label>
                                 <Col md={3}>
                                     <Input type="email" id="email" name="email"
                                         placeholder="Email"
@@ -284,7 +284,7 @@ class Tour extends Component{
                             </FormGroup>
                           
                             <FormGroup row>
-                                <Label htmlFor="date" md={2} align="right"><h4>Date</h4></Label>
+                                <Label htmlFor="date" md={2} className='text-md-right'><h4>Date</h4></Label>
                                     <Col md={3}>
                                         <Input type="date" id="date" name="date" placeholder="mm/dd/yyyy"
                                         value={this.state.date}
@@ -293,7 +293,7 @@ class Tour extends Component{
                                         onChange={this.handleInputChange}/>
                                         <FormFeedback>{errors.date}</FormFeedback>
                                     </Col>
-                                    <Label htmlFor="time" md={2} align="right"><h4>Time</h4></Label>
+                                    <Label htmlFor="time" md={2} className='text-md-right'><h4>Time</h4></Label>
                                     <Col md={3}>
                                         <Input type="time" id="time" name="time"
                                         value={this.state.time}                                      
@@ -302,7 +302,7 @@ class Tour extends Component{
                             </FormGroup>
                         
                             <FormGroup row>
-                                <Label htmlFor="notes" md={2} align="right"><h4>Notes (Optional)</h4></Label>
+                                <Label htmlFor="notes" md={2} className='text-md-right'><h4>Notes (Optional)</h4></Label>
                                 <Col md={3}>
                                     <Input type="textarea" id="notes" name="notes"
                                         rows="6"
@@ -311,7 +311,7 @@ class Tour extends Component{
                                 </Col>
  
                                 <Col className="align-self-end" align="center" >
-                                    <Button type="submit" size="lg" color="success" style={{fontSize: '3vh' }}>
+                                    <Button type="submit" size="lg" color="success" style={{fontSize: '3vh',margin:40 }}>
                                         Schedule Tour
                                     </Button>
                                 </Col>
@@ -362,17 +362,19 @@ function HouseItem (props) {
                     <Button variant="outline-light" style={{backgroundColor:"black"}}><Link to="/home" style={{ color: 'white', fontSize:'1.8rem'}}>Back</Link></Button>
                     </Col>
                 </Row>
-                <br/><br/>
+                <div  className='mt-5 mb-5 d-none d-md-block'>
                 {RenderMainImage(props.houseitem)}
-                <br/><br/>
+                </div>
+                <div  className='mt-5 mb-5'>
                 {RenderInfo(props.houseinfo)}
             
                 {RenderDescription(props.houseitem)}
-                <br/><br/><br/>
-                <Row style={{justifyContent: "center"}}>
+                </div>
+               
+                <div style={{padding:30}} className='mt-5 mb-5' align='center' >
                 {Map(props.houseinfo)}
-                </Row>
-                <br/><br/><br/>  <br/><br/><br/><br/><br/><br/>
+                </div>
+                <div style={{padding:30}}>
                 <FadeTransform
                                 in
                                 transformProps={{
@@ -381,6 +383,7 @@ function HouseItem (props) {
 
                     <Tour/>
                 </FadeTransform>
+                </div>
             </div>
     )
 }

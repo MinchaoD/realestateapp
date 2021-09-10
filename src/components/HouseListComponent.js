@@ -8,11 +8,11 @@ function RenderHouseList({houseinfo}) {
 
             <div className ="row justify-content-center">
                 <div className = "col ">
-                    <CardDeck>
-                        <Card>
+                   
+                        <Card className='mx-auto'>
                             <Link to={`/houselist${houseinfo.id}`} >
-                                <CardImg  height="400" src={houseinfo.image} alt={houseinfo.location} />
-                                <CardBody className="cardinfo" >
+                                <CardImg  height="350rem" src={houseinfo.image} alt={houseinfo.location} />
+                                <CardBody  >
                                     <CardTitle>$ {houseinfo.price}</CardTitle>
                                     <CardText>
                                         <div className = "row">
@@ -38,7 +38,7 @@ function RenderHouseList({houseinfo}) {
                                 </CardFooter>
                             </Link>
                         </Card>
-                    </CardDeck>
+                    
                 </div>
             </div>
     )

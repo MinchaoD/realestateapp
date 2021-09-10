@@ -16,7 +16,7 @@ function RenderSearchList({searchresults}) {
                 <div className = "col ">
                         <Card>
                             <Link to={`/searchresult${searchresults.property_id}`} >
-                                <CardImg  height="400" src={searchresults.primary_photo.href} />
+                                <CardImg  height="350rem" src={searchresults.primary_photo.href} />
                             </Link>
                                 <CardBody className="cardinfo" >
                                     <CardTitle> 
@@ -120,7 +120,7 @@ function SearchList (props) {
                 </div>
                 <br/><br/>
                 <div className="row justify-content-center">
-                    <h1> Properties Found in {props.city}, {props.state}</h1>
+                    <h2 style={{fontFamily:"Lobster" , fontStyle:'italic'}}> Properties Found in {props.city}, {props.state}</h2>
                 </div>
                 <br/> <br/>
                 <div className="row">

@@ -15,7 +15,7 @@ class Footer extends Component {
                             <br/>
                         <div className="row  ">
                             
-                            <div className="col-xs-12 col-md-3 offset-1 text-left">
+                            <div className="col-md-3 offset-1 text-left d-none d-md-block">
                             
                                 <h2>Links</h2>
                                 <ul className="list-unstyled">
@@ -25,13 +25,13 @@ class Footer extends Component {
                                 </ul>
                             </div>
 
-                            <div className="col-xs-12 col-md-4  text-center ">
+                            <div className="col-md-4  text-center d-none d-md-block">
                                 <h4> made with <i className="fa fa-heart"></i> in Seattle</h4>
                                 <p>copyright ©  {year}</p>
                             </div>
                      
-                            <div className="col-xs-12 col-md-3 text-left offset-1">
-                                <a role="button" className="btn btn-link" href="tel:+12063838906"><h5><i className="fa fa-phone-square fa-lg"></i> 206-383-8906</h5></a><br />
+                            <div className="col-md-3 offset-md-1 text-left">
+                                <a role="button" className="btn btn-link " href="tel:+12063838906"><h5><i className="fa fa-phone-square fa-lg"></i> 206-383-8906</h5></a><br />
                                 <a role="button" className="btn btn-link" href="mailto: chaohg@hotmail.com"><h5><i className="fa fa-envelope-square fa-lg"></i> chaohg@hotmail.com </h5></a>
                                 <a role="button" className="btn btn-link" href="https://github.com/chaohg"><h5><i className="fa fa-github fa-lg"></i> www.github.com/chaohg </h5></a>
                             </div>
