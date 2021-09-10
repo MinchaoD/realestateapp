@@ -410,7 +410,7 @@ function SearchItem (props) {
                   
                     {Video(props.searchitem)}
                     </div>
-                    <div style={{padding:30}}>
+                    <div style={{paddingTop:30}}>
                     <FadeTransform
                                     in
                                     transformProps={{

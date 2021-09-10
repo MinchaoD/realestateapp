@@ -374,7 +374,7 @@ function HouseItem (props) {
                 <div style={{padding:30}} className='mt-5 mb-5' align='center' >
                 {Map(props.houseinfo)}
                 </div>
-                <div style={{padding:30}}>
+                <div style={{paddingTop:30}}>
                 <FadeTransform
                                 in
                                 transformProps={{
