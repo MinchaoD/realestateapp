@@ -12,25 +12,23 @@ function RenderMainImage(houseitem) {
             <div className = "container-fluid">
                 <Zoom>
                     <Row >
-                        <Col md={8}>               
+                        <Col className='d-none d-lg-block' md={8}>               
                             <Card>                       
                                 <CardImg  height="820" src={houseitem.image}/>                           
                             </Card>
                         </Col>
                         <Col md={4} >
                             <Card>
-                                <CardImg  height="400" src={houseitem.image1} align />
+                                <CardImg  height="400" src={houseitem.image1} />
                             </Card>
                             
-                                <br/>
-                            <Card>
-                                <CardImg  height="400" src={houseitem.image2} mb-6 />
+                            <Card className='mt-3' >
+                                <CardImg  height="400" src={houseitem.image2} />
                             </Card>
                             
                         </Col>
                     </Row> 
-                    <br/>
-                    <Row>
+                    <Row className='mt-4'>
                         <Col md={4}>
                             <Card>
                                 <CardImg  height="400" src={houseitem.image3} />
@@ -362,7 +360,7 @@ function HouseItem (props) {
                     <Button variant="outline-light" style={{backgroundColor:"black"}}><Link to="/home" style={{ color: 'white', fontSize:'1.8rem'}}>Back</Link></Button>
                     </Col>
                 </Row>
-                <div  className='mt-5 mb-5 d-none d-md-block'>
+                <div  className='mt-5 mb-5'>
                 {RenderMainImage(props.houseitem)}
                 </div>
                 <div  className='mt-5 mb-5'>
