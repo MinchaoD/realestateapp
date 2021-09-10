@@ -111,9 +111,10 @@ handleInputChange = (e) => {
                 <Switch>
                         <Route path='/home' render={() => 
                         <Fragment>  
-                            <div style={{fontSize:"3vh"}} className="ml-5">
+                            <div style={{fontSize:"3vh"}} className="ml-3 ml-md-5 mt-5 ">
+                                {/* only screen bigger than md will have ml-5, the smaller screen has ml-3 */}
                                 <Row>
-                                    <div className='col-xs-6 col-md-2 '>
+                                    <div className='col-xs-6 col-md-2'>
                                         <label for="site-search" >City:</label>
                                     </div>
                                     <div className='col-xs-6 col-md-4 '>

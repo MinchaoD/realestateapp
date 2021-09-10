@@ -367,8 +367,10 @@ function Video(searchitem){
                 allow='autoplay; encrypted-media'
                 allowfullscreen
                 title='video'
-                width={950}
-                height={550}
+                width='100%'
+                height='100%'
+                // width={950}
+                // height={550}
                 />
              
             </div>

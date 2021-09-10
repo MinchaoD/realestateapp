@@ -8,9 +8,9 @@ class App extends Component {
     render() {
         return (
           <BrowserRouter>
-                <Container fluid>
+                <div>
                   <Main />
-                </Container>
+                </div>
           </BrowserRouter>
         );
     };

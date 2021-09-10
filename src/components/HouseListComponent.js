@@ -11,7 +11,7 @@ function RenderHouseList({houseinfo}) {
                    
                         <Card className='mx-auto'>
                             <Link to={`/houselist${houseinfo.id}`} >
-                                <CardImg  height="350rem" src={houseinfo.image} alt={houseinfo.location} />
+                                <CardImg  height="300rem" src={houseinfo.image} alt={houseinfo.location} />
                                 <CardBody  >
                                     <CardTitle>$ {houseinfo.price}</CardTitle>
                                     <CardText>

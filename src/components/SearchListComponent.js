@@ -16,7 +16,7 @@ function RenderSearchList({searchresults}) {
                 <div className = "col ">
                         <Card>
                             <Link to={`/searchresult${searchresults.property_id}`} >
-                                <CardImg  height="350rem" src={searchresults.primary_photo.href} />
+                                <CardImg  height="300rem" src={searchresults.primary_photo.href} />
                             </Link>
                                 <CardBody className="cardinfo" >
                                     <CardTitle> 

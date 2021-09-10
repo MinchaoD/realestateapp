@@ -248,7 +248,7 @@ class Tour extends Component{
                                 </Col>
                           
                                     <Label htmlFor="lastName" md={2} className='text-md-right'><h4>Last Name</h4></Label>
-                             {/* here md-align so only screen bigger than md will align right, the smaller screen is still align left */}
+                             {/* here text-md-right so only screen bigger than md will align right, the smaller screen is still align left */}
                                 <Col md={3}>
                                     <Input type="text" id="lastName" name="lastName"
                                         placeholder="Last Name"
