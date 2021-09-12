@@ -8,11 +8,11 @@ class Footer extends Component {
             <div>
                <footer className="site-footer">
                     <div className="container-fluid">
-                    <hr  style={{
+                    <hr  className='pb-4' style={{
                                 height: .5,
                                 borderColor : 'white'
                             }}/>
-                            <br/>
+                      
                         <div className="row  ">
                             
                             <div className="col-md-3 offset-1 text-left d-none d-md-block">
@@ -31,7 +31,7 @@ class Footer extends Component {
                             </div>
                      
                             <div className="col-md-3 offset-md-1 text-left">
-                                <a role="button" className="btn btn-link " href="tel:+12063838906"><h5><i className="fa fa-phone-square fa-lg"></i> 206-383-8906</h5></a><br />
+                                <a role="button" className="btn btn-link " href="tel:+12063838906"><h5><i className="fa fa-phone-square fa-lg"></i> 206-383-8906</h5></a>
                                 <a role="button" className="btn btn-link" href="mailto: chaohg@hotmail.com"><h5><i className="fa fa-envelope-square fa-lg"></i> chaohg@hotmail.com </h5></a>
                                 <a role="button" className="btn btn-link" href="https://github.com/chaohg"><h5><i className="fa fa-github fa-lg"></i> www.github.com/chaohg </h5></a>
                             </div>

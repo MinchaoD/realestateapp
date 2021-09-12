@@ -62,19 +62,17 @@ function RenderInfo(searchitem) {
     if(searchitem){
         return(
             <div className = "container-fluid">
-                 <Row>
+                 <Row className='pb-4'>
                     <Col md={6}>
                         <h4>{`${searchitem.location.address.line}, ${searchitem.location.address.city}, ${searchitem.location.address.state}`}</h4>
                     </Col>
                 </Row>
-                <br/>
-                <Row>
+                <Row className='pb-4'>
                     <Col>
                         <h2> ${searchitem.list_price}</h2>
                     </Col>
                 </Row>
-                <br/>
-                <Row>
+                <Row className='pb-3'>
                     <Col md={1}>
                         <h4 style={{ color: 'grey' }}> Beds: </h4>
                     </Col >
@@ -94,7 +92,6 @@ function RenderInfo(searchitem) {
                         <h4> {searchitem.description.sqft}</h4>
                     </Col>
                 </Row>
-                <br/>
             </div>
         )
     }
@@ -107,7 +104,7 @@ function RenderDescription(searchitem) {
  
         return(
             <div className = "container-fluid">
-                <Row>
+                <Row className='pb-5'>
                     <Col md={1}>
                         <h4 style={{ color: 'grey' }}>Year Built: </h4>
                     </Col>
@@ -129,8 +126,6 @@ function RenderDescription(searchitem) {
                         <h4> {searchitem.description.lot_sqft}</h4>
                     </Col>
                 </Row>
-                <br/>
-                <br/>
             </div>
         )
     }

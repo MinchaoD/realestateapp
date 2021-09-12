@@ -111,9 +111,9 @@ handleInputChange = (e) => {
                 <Switch>
                         <Route path='/home' render={() => 
                         <Fragment>  
-                            <div style={{fontSize:"3vh"}} className="ml-3 ml-md-5 mt-5 ">
+                            <div style={{fontSize:"3vh"}} className="ml-3 ml-md-5 mt-5 mb-5 pb-5 ">
                                 {/* only screen bigger than md will have ml-5, the smaller screen has ml-3 */}
-                                <Row>
+                                <Row className='pb-4'>
                                     <div className='col-xs-6 col-md-2'>
                                         <label for="site-search" >City:</label>
                                     </div>
@@ -129,7 +129,7 @@ handleInputChange = (e) => {
                                             onChange={this.handleInputChange} />
                                     </div>
                                 </Row>
-                                <br/>
+                               
                                 <Row>
                                     <div className='col-xs-6 col-md-2'> 
                                         <label for="site-search" ><span>Min Price:</span></label>
@@ -146,16 +146,15 @@ handleInputChange = (e) => {
                                             onChange={this.handleInputChange} />
                                     </div>
                                 </Row>
-                                <br/><br/>
-                                <Row>
+                               
+                                <Row className='pt-5 mt-5'>
                                     <div className='col col-md-3 mx-auto'>
                                         <button type="submit" class="btn btn-outline-light btn-lg btn-block" style={{fontSize: '4vh'}} onClick={this.handleSubmit} ><Link to={`/searchresults${this.state.city}`}>Search</Link></button>
                                     </div>
                                 </Row>
                                
                             </div>
-                            <br/><br/><br/>  <br/><br/><br/>
-                            
+                          
                             <HouseList houseinfo={this.state.houseinfo} />
                             
                         </Fragment> }/> 

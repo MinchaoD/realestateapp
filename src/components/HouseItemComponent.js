@@ -57,19 +57,17 @@ function RenderInfo(houseinfo) {
     if(houseinfo){
         return(
             <div className = "container-fluid">
-                 <Row>
+                 <Row className='pb-4'>
                     <Col md={6}>
                         <h4>{houseinfo.location}</h4>
                     </Col>
                 </Row>
-                <br/>
-                <Row>
+                <Row className='pb-4'>
                     <Col>
                         <h2> ${houseinfo.price}</h2>
                     </Col>
                 </Row>
-                <br/>
-                <Row>
+                <Row className='pb-4'>
                     <Col md={1}>
                         <h4 style={{ color: 'grey' }}> Beds: </h4>
                     </Col >
@@ -89,7 +87,6 @@ function RenderInfo(houseinfo) {
                         <h4> {houseinfo.sqft}</h4>
                     </Col>
                 </Row>
-                <br/>
             </div>
         )
     }
@@ -102,7 +99,7 @@ function RenderDescription(houseitem) {
  
         return(
             <div className = "container-fluid">
-                <Row>
+                <Row className='pb-5'>
                     <Col md={2}>
                         <h4 style={{ color: 'grey' }}>Year Built: </h4>
                     </Col>
@@ -117,9 +114,7 @@ function RenderDescription(houseitem) {
                         <h4> {houseitem.propertytype}</h4>
                     </Col>
                 </Row>
-                <br/>
-                <br/>
-
+                
                 <Row>
                     <Col>
                      

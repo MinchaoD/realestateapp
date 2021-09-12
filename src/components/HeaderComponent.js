@@ -170,8 +170,8 @@ class Header extends Component {
                                         Remember me
                                     </Label>
                                 </FormGroup>
-                                <br></br>
-                                <Button type="submit" size="lg" block value="submit" color="primary">Login</Button>
+                                
+                                <Button type="submit" size="lg" block value="submit" className='mt-3' color="primary">Login</Button>
                             </Form>
                     </ModalBody>
                 </Modal>
@@ -202,8 +202,8 @@ class Header extends Component {
                                         I accept the Terms of Use and the Privacy Policy.
                                     </Label>
                                 </FormGroup>
-                                <br></br>
-                                <Button type="submit" size="lg" block value="submit" color="primary">Sign Up</Button>
+                                
+                                <Button type="submit" size="lg" block value="submit" className='mt-3' color="primary">Sign Up</Button>
                         </Form>
                     </ModalBody>
                 </Modal>

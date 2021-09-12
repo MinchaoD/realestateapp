@@ -93,11 +93,10 @@ function SearchList (props) {
     if (props.isloading) {
         return (
         <div>
-            <div className="row justify-content-center">
+            <div className="row justify-content-center pb-5 mb-5">
                 <ClipLoader color="blue" size={150}/>
                 
             </div>
-            <br/><br/> <br/>
             <div className="row justify-content-center">
                 <h1> Loading ... </h1>
             </div>
@@ -106,7 +105,7 @@ function SearchList (props) {
     }
         return (
              <div className="container-fluid">
-                <div className="row">
+                <div className="row pt-4">
                
                     <Col className="col-md-10 ml-3">
                     <Link to="/home"><Button color="outline-light" style={{fontSize:'3vh'}}> Home</Button></Link>
@@ -118,12 +117,10 @@ function SearchList (props) {
                     </Col> */}
              
                 </div>
-                <br/><br/>
-                <div className="row justify-content-center">
+                <div className="row justify-content-center pt-5 pb-3">
                     <h2 style={{fontFamily:"Lobster" , fontStyle:'italic'}}> Properties Found in {props.city}, {props.state}</h2>
                 </div>
-                <br/> <br/>
-                <div className="row">
+                <div className="row pt-5">
                      {searchlist}
                      <ReactPaginate
                     previousLabel={"Previous"}
