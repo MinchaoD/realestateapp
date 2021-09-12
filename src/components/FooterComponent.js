@@ -19,9 +19,9 @@ class Footer extends Component {
                             
                                 <h2>Links</h2>
                                 <ul className="list-unstyled">
-                                    <li><a href="http://www.opendoor.com"><h5>Opendoor</h5></a></li>
                                     <li><a href="http://www.redfin.com"><h5>Redfin</h5></a></li>
                                     <li><a href="http://www.zillow.com"><h5>Zillow</h5></a></li>
+                                    <li><a href="https://www.windermere.com/"><h5>Windermere</h5></a></li>
                                 </ul>
                             </div>
 
